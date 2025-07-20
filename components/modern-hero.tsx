@@ -1,277 +1,244 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Mail, ArrowRight, Sparkles, Code, Users } from "lucide-react"
-import Link from "next/link"
 import { motion } from "framer-motion"
-import Image from "next/image"
-import { AnimatedCounter } from "@/components/animated-counter"
+import { Button } from "@/components/ui/button"
+import { ArrowDown, Download, Mail, Github, Linkedin } from "lucide-react"
+import { ScrollRevealText, AnimatedText } from "@/components/animated-text"
+import { FloatingElements } from "@/components/floating-elements"
+import Spline from "@splinetool/react-spline/next"
 
 export function ModernHero() {
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-        {/* Floating Orbs */}
-        <motion.div
-          className="absolute top-20 left-20 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
-          animate={{
-            x: [0, -80, 0],
-            y: [0, 60, 0],
-            scale: [1, 0.8, 1],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"
-          animate={{
-            x: [0, 50, -50, 0],
-            y: [0, -30, 30, 0],
-            scale: [1, 1.1, 0.9, 1],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
 
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
+  return (
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Elements */}
+      <FloatingElements />
+
+      {/* Animated Background Grid */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-transparent to-blue-500/10" />
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+            backgroundSize: "50px 50px",
+          }}
+          animate={{
+            backgroundPosition: ["0px 0px", "50px 50px"],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+          }}
+        />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+        {/* Left Content */}
+        <motion.div
+          className="space-y-8"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Status Badge */}
           <motion.div
-            className="space-y-8"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-emerald-500/20 text-sm font-medium"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            whileHover={{ scale: 1.05 }}
           >
-            {/* Status Badge */}
+            <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+            <span className="text-emerald-400">Available for new projects</span>
+          </motion.div>
+
+          {/* Main Heading */}
+          <div className="space-y-4">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+              <p className="text-xl text-muted-foreground mb-2">Hello, I'm</p>
+            </motion.div>
+
+            <ScrollRevealText
+              text="Ramaiah M"
+              className="text-6xl lg:text-7xl font-bold bg-gradient-to-r from-white via-emerald-200 to-emerald-400 bg-clip-text text-transparent"
+            />
+
+            <ScrollRevealText
+              text="Full Stack Developer"
+              className="text-3xl lg:text-4xl font-semibold text-emerald-400"
+              delay={0.5}
+            />
+          </div>
+
+          {/* Description */}
+          <AnimatedText
+            text="I craft exceptional digital experiences with modern web technologies. Specializing in React, Next.js, and Node.js to build scalable applications that make a difference."
+            className="text-xl text-muted-foreground leading-relaxed max-w-2xl"
+            delay={0.8}
+            stagger={0.02}
+          />
+
+          {/* CTA Buttons */}
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
+          >
+            <Button
+              size="lg"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 text-lg font-semibold rounded-xl group"
+              onClick={() => scrollToSection("contact")}
+            >
+              <Mail className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
+              Get In Touch
+            </Button>
+
+            <Button
+              size="lg"
+              variant="outline"
+              className="glass border-white/20 hover:border-emerald-400/50 px-8 py-6 text-lg font-semibold rounded-xl group bg-transparent"
+            >
+              <Download className="w-5 h-5 mr-2 group-hover:translate-y-1 transition-transform" />
+              Download CV
+            </Button>
+          </motion.div>
+
+          {/* Social Links */}
+          <motion.div
+            className="flex items-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4 }}
+          >
+            <span className="text-muted-foreground">Follow me:</span>
+            <div className="flex gap-3">
+              {[
+                { icon: Github, href: "#", label: "GitHub" },
+                { icon: Linkedin, href: "#", label: "LinkedIn" },
+              ].map(({ icon: Icon, href, label }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  className="p-3 rounded-xl glass border border-white/10 hover:border-emerald-400/50 text-muted-foreground hover:text-emerald-400 transition-all"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Icon className="w-5 h-5" />
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Right Content - 3D Spline Bot */}
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <div className="relative aspect-square max-w-lg mx-auto">
+            {/* Glow Effect */}
             <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-emerald-500/20 text-sm font-medium"
-              initial={{ opacity: 0, scale: 0.8 }}
+              className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 via-blue-500/20 to-purple-500/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                rotate: [0, 180, 360],
+                opacity: [0.3, 0.6, 0.3],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
+            />
+
+            {/* 3D Spline Bot */}
+            <div className="relative z-10 w-full h-full rounded-3xl overflow-hidden glass border border-white/10">
+              <Spline scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode" />
+
+              {/* Overlay for better integration */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent pointer-events-none" />
+            </div>
+
+            {/* Floating Stats */}
+            <motion.div
+              className="absolute -top-6 -left-6 p-4 rounded-2xl glass border border-emerald-500/20 backdrop-blur-xl"
+              initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 1.0 }}
               whileHover={{ scale: 1.05 }}
             >
-              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-              <span className="text-emerald-400">Available for new projects</span>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-emerald-400">4+</div>
+                <div className="text-xs text-muted-foreground">Years Exp</div>
+              </div>
             </motion.div>
 
-            {/* Main Heading */}
-            <div className="space-y-4">
-              <motion.h1
-                className="text-5xl lg:text-7xl font-bold font-outfit leading-tight"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-              >
-                <span className="text-white">Hello,</span>
-                <br />
-                <span className="gradient-text">I'm Ramaiah</span>
-              </motion.h1>
+            <motion.div
+              className="absolute -bottom-6 -right-6 p-4 rounded-2xl glass border border-blue-500/20 backdrop-blur-xl"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.2 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-400">50+</div>
+                <div className="text-xs text-muted-foreground">Projects</div>
+              </div>
+            </motion.div>
 
+            {/* Orbiting Elements */}
+            {[...Array(3)].map((_, i) => (
               <motion.div
-                className="flex items-center gap-3 text-xl text-muted-foreground"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                <Code className="w-6 h-6 text-emerald-400" />
-                <span className="font-semibold text-white">Full Stack Developer</span>
-                <span>•</span>
-                <span className="text-emerald-400">Frontend Focused</span>
-              </motion.div>
-            </div>
-
-            {/* Description */}
-            <motion.p
-              className="text-xl text-muted-foreground leading-relaxed max-w-2xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-            >
-              Crafting exceptional digital experiences with <span className="text-blue-400 font-semibold">React</span>,{" "}
-              <span className="text-blue-400 font-semibold">Next.js</span>, and{" "}
-              <span className="text-purple-400 font-semibold">modern technologies</span>. Passionate about clean code,
-              performance optimization, and user-centric design.
-            </motion.p>
-
-            {/* Stats */}
-            <motion.div
-              className="flex items-center gap-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-            >
-              {[
-                { value: 4, suffix: "+", label: "Years Exp", color: "emerald" },
-                { value: 50, suffix: "+", label: "Projects", color: "blue" },
-                { value: 20, suffix: "K+", label: "Users Served", color: "purple" },
-              ].map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  className="text-center"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.8 + index * 0.1 }}
-                >
-                  <div className={`text-2xl font-bold text-${stat.color}-400 font-mono`}>
-                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                  </div>
-                  <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* CTA Buttons */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 }}
-            >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  size="lg"
-                  className="bg-emerald-500 hover:bg-emerald-600 text-black font-semibold px-8 py-4 text-lg rounded-xl glow-green group"
-                >
-                  <Sparkles className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
-                  View My Work
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </motion.div>
-
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white px-8 py-4 text-lg rounded-xl backdrop-blur-sm"
-                >
-                  <Users className="w-5 h-5 mr-2" />
-                  Let's Connect
-                </Button>
-              </motion.div>
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              className="flex items-center gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0 }}
-            >
-              {[
-                { href: "https://github.com/ramaiahmariappan", icon: Github, label: "GitHub" },
-                { href: "https://linkedin.com/in/ramaiah-mariappan", icon: Linkedin, label: "LinkedIn" },
-                { href: "mailto:ramaiahmariappan.dev@gmail.com", icon: Mail, label: "Email" },
-              ].map((social, index) => (
-                <motion.div
-                  key={social.label}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1.1 + index * 0.1 }}
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                >
-                  <Link
-                    href={social.href}
-                    className="p-3 rounded-xl glass border border-white/10 text-muted-foreground hover:text-white hover:border-white/20 transition-all"
-                    aria-label={social.label}
-                  >
-                    <social.icon className="w-5 h-5" />
-                  </Link>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Right Content - Profile Image */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <div className="relative">
-              {/* Glow Effect */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 via-blue-500/20 to-purple-500/20 rounded-3xl blur-3xl"
+                key={i}
+                className="absolute w-3 h-3 bg-emerald-400/60 rounded-full"
+                style={{
+                  top: "50%",
+                  left: "50%",
+                }}
                 animate={{
-                  scale: [1, 1.1, 1],
-                  rotate: [0, 5, -5, 0],
+                  x: [0, Math.cos((i * 120 * Math.PI) / 180) * 150],
+                  y: [0, Math.sin((i * 120 * Math.PI) / 180) * 150],
+                  rotate: 360,
                 }}
                 transition={{
-                  duration: 8,
+                  duration: 10 + i * 2,
                   repeat: Number.POSITIVE_INFINITY,
-                  ease: "easeInOut",
+                  ease: "linear",
                 }}
               />
-
-              {/* Profile Image Container */}
-              <motion.div
-                className="relative z-10 rounded-3xl overflow-hidden glass border border-white/10"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="aspect-[4/5] relative">
-                  <Image
-                    src="/images/ramaiah-profile.jpg"
-                    alt="Ramaiah M - Full Stack Developer"
-                    fill
-                    className="object-cover object-center"
-                    priority
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-
-                  {/* Overlay Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent" />
-                </div>
-              </motion.div>
-
-              {/* Floating Badges */}
-              <motion.div
-                className="absolute -top-4 -right-4 px-4 py-2 rounded-full glass border border-emerald-500/20 text-emerald-400 text-sm font-semibold"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.2 }}
-                whileHover={{ scale: 1.1 }}
-              >
-                <AnimatedCounter value={4} suffix="+" /> Years Exp
-              </motion.div>
-
-              <motion.div
-                className="absolute -bottom-4 -left-4 px-4 py-2 rounded-full glass border border-blue-500/20 text-blue-400 text-sm font-semibold"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.4 }}
-                whileHover={{ scale: 1.1 }}
-              >
-                <AnimatedCounter value={50} suffix="+" /> Projects
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
-    </section>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.6 }}
+      >
+        <motion.button
+          onClick={() => scrollToSection("about")}
+          className="flex flex-col items-center gap-2 text-muted-foreground hover:text-emerald-400 transition-colors group"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+        >
+          <span className="text-sm font-medium">Scroll to explore</span>
+          <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+        </motion.button>
+      </motion.div>
+    </div>
   )
 }
