@@ -1,28 +1,81 @@
-"use client"
+import React, { lazy } from "react";
 
-import React from "react"
-
-import { motion, useMotionValue } from "framer-motion"
-import { useState, useEffect, useRef } from "react"
-import { Code2, Database, Globe, Palette, Zap, Cloud, GitBranch, TestTube } from "lucide-react"
-import Spline from "@splinetool/react-spline/next"
+import { motion, useMotionValue } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import {
+  Code2,
+  Database,
+  Globe,
+  Palette,
+  Zap,
+  Cloud,
+  GitBranch,
+  TestTube,
+} from "lucide-react";
+// import Spline from "@splinetool/react-spline/next";
+const Spline = lazy(() => import("@splinetool/react-spline"));
 
 const technologies = [
-  { name: "React", icon: Code2, color: "#61DAFB", description: "Frontend Library" },
-  { name: "Next.js", icon: Globe, color: "#000000", description: "React Framework" },
-  { name: "TypeScript", icon: Code2, color: "#3178C6", description: "Type Safety" },
-  { name: "Node.js", icon: Database, color: "#339933", description: "Backend Runtime" },
-  { name: "PostgreSQL", icon: Database, color: "#336791", description: "Database" },
-  { name: "Tailwind", icon: Palette, color: "#06B6D4", description: "CSS Framework" },
-  { name: "Docker", icon: Cloud, color: "#2496ED", description: "Containerization" },
+  {
+    name: "React",
+    icon: Code2,
+    color: "#61DAFB",
+    description: "Frontend Library",
+  },
+  {
+    name: "Next.js",
+    icon: Globe,
+    color: "#000000",
+    description: "React Framework",
+  },
+  {
+    name: "TypeScript",
+    icon: Code2,
+    color: "#3178C6",
+    description: "Type Safety",
+  },
+  {
+    name: "Node.js",
+    icon: Database,
+    color: "#339933",
+    description: "Backend Runtime",
+  },
+  {
+    name: "PostgreSQL",
+    icon: Database,
+    color: "#336791",
+    description: "Database",
+  },
+  {
+    name: "Tailwind",
+    icon: Palette,
+    color: "#06B6D4",
+    description: "CSS Framework",
+  },
+  {
+    name: "Docker",
+    icon: Cloud,
+    color: "#2496ED",
+    description: "Containerization",
+  },
   { name: "AWS", icon: Cloud, color: "#FF9900", description: "Cloud Platform" },
-  { name: "Git", icon: GitBranch, color: "#F05032", description: "Version Control" },
-  { name: "Jest", icon: TestTube, color: "#C21325", description: "Testing Framework" },
-]
+  {
+    name: "Git",
+    icon: GitBranch,
+    color: "#F05032",
+    description: "Version Control",
+  },
+  {
+    name: "Jest",
+    icon: TestTube,
+    color: "#C21325",
+    description: "Testing Framework",
+  },
+];
 
 // Grid Animation Showcase
 export function TechGridShowcase() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <div className="relative w-full h-96 flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-white/10 rounded-2xl">
@@ -40,11 +93,18 @@ export function TechGridShowcase() {
               className="w-16 h-16 rounded-2xl glass border border-white/10 flex items-center justify-center relative overflow-hidden"
               style={{ backgroundColor: `${tech.color}15` }}
               animate={{
-                borderColor: hoveredIndex === index ? `${tech.color}50` : "rgba(255,255,255,0.1)",
-                boxShadow: hoveredIndex === index ? `0 0 30px ${tech.color}30` : "none",
+                borderColor:
+                  hoveredIndex === index
+                    ? `${tech.color}50`
+                    : "rgba(255,255,255,0.1)",
+                boxShadow:
+                  hoveredIndex === index ? `0 0 30px ${tech.color}30` : "none",
               }}
             >
-              {React.createElement(tech.icon, { className: "w-8 h-8", style: { color: tech.color } })}
+              {React.createElement(tech.icon, {
+                className: "w-8 h-8",
+                style: { color: tech.color },
+              })}
             </motion.div>
 
             <motion.div
@@ -63,7 +123,7 @@ export function TechGridShowcase() {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 // Wave Effect Showcase
@@ -91,14 +151,17 @@ export function TechWaveShowcase() {
               whileHover={{ scale: 1.2, rotate: 360 }}
               transition={{ duration: 0.5 }}
             >
-              {React.createElement(tech.icon, { className: "w-8 h-8", style: { color: tech.color } })}
+              {React.createElement(tech.icon, {
+                className: "w-8 h-8",
+                style: { color: tech.color },
+              })}
             </motion.div>
             <span className="text-xs text-gray-400">{tech.name}</span>
           </motion.div>
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 // Orbital Motion Showcase
@@ -108,15 +171,19 @@ export function TechOrbitalShowcase() {
       <motion.div
         className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-400/20 to-blue-400/20 border border-emerald-400/30 flex items-center justify-center"
         animate={{ rotate: 360 }}
-        transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+        transition={{
+          duration: 20,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "linear",
+        }}
       >
         <Zap className="w-10 h-10 text-emerald-400" />
       </motion.div>
 
       {technologies.map((tech, index) => {
-        const radius = 80 + (index % 3) * 30
-        const speed = 10 + (index % 3) * 5
-        const angle = (index / technologies.length) * 360
+        const radius = 80 + (index % 3) * 30;
+        const speed = 10 + (index % 3) * 5;
+        const angle = (index / technologies.length) * 360;
 
         return (
           <motion.div
@@ -130,8 +197,14 @@ export function TechOrbitalShowcase() {
               marginTop: "-24px",
             }}
             animate={{
-              x: [Math.cos((angle * Math.PI) / 180) * radius, Math.cos(((angle + 360) * Math.PI) / 180) * radius],
-              y: [Math.sin((angle * Math.PI) / 180) * radius, Math.sin(((angle + 360) * Math.PI) / 180) * radius],
+              x: [
+                Math.cos((angle * Math.PI) / 180) * radius,
+                Math.cos(((angle + 360) * Math.PI) / 180) * radius,
+              ],
+              y: [
+                Math.sin((angle * Math.PI) / 180) * radius,
+                Math.sin(((angle + 360) * Math.PI) / 180) * radius,
+              ],
             }}
             transition={{
               duration: speed,
@@ -139,24 +212,27 @@ export function TechOrbitalShowcase() {
               ease: "linear",
             }}
           >
-            {React.createElement(tech.icon, { className: "w-6 h-6", style: { color: tech.color } })}
+            {React.createElement(tech.icon, {
+              className: "w-6 h-6",
+              style: { color: tech.color },
+            })}
           </motion.div>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
 
 // Matrix Rain Showcase
 export function TechMatrixShowcase() {
-  const [currentTech, setCurrentTech] = useState(0)
+  const [currentTech, setCurrentTech] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTech((prev) => (prev + 1) % technologies.length)
-    }, 2000)
-    return () => clearInterval(interval)
-  }, [])
+      setCurrentTech((prev) => (prev + 1) % technologies.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="relative w-full h-96 flex items-center justify-center overflow-hidden bg-black/50 rounded-2xl border border-white/10">
@@ -192,12 +268,16 @@ export function TechMatrixShowcase() {
           })}
         </div>
         <div className="text-center">
-          <h3 className="text-xl font-bold text-white">{technologies[currentTech].name}</h3>
-          <p className="text-sm text-gray-400">{technologies[currentTech].description}</p>
+          <h3 className="text-xl font-bold text-white">
+            {technologies[currentTech].name}
+          </h3>
+          <p className="text-sm text-gray-400">
+            {technologies[currentTech].description}
+          </p>
         </div>
       </motion.div>
     </div>
-  )
+  );
 }
 
 // DNA Helix Showcase
@@ -206,11 +286,11 @@ export function TechHelixShowcase() {
     <div className="relative w-full h-96 flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-white/10 rounded-2xl">
       <div className="relative w-80 h-80">
         {technologies.map((tech, index) => {
-          const t = (index / technologies.length) * Math.PI * 4
-          const radius = 60
-          const x = Math.cos(t) * radius
-          const y = Math.sin(t) * radius
-          const z = (index / technologies.length) * 200 - 100
+          const t = (index / technologies.length) * Math.PI * 4;
+          const radius = 60;
+          const x = Math.cos(t) * radius;
+          const y = Math.sin(t) * radius;
+          const z = (index / technologies.length) * 200 - 100;
 
           return (
             <motion.div
@@ -226,34 +306,50 @@ export function TechHelixShowcase() {
                 z: [z, z + 20, z],
               }}
               transition={{
-                rotateY: { duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
-                z: { duration: 3, delay: index * 0.2, repeat: Number.POSITIVE_INFINITY },
+                rotateY: {
+                  duration: 10,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "linear",
+                },
+                z: {
+                  duration: 3,
+                  delay: index * 0.2,
+                  repeat: Number.POSITIVE_INFINITY,
+                },
               }}
             >
-              {React.createElement(tech.icon, { className: "w-6 h-6", style: { color: tech.color } })}
+              {React.createElement(tech.icon, {
+                className: "w-6 h-6",
+                style: { color: tech.color },
+              })}
             </motion.div>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }
 
 // Particle System Showcase
 export function TechParticleShowcase() {
-  const [explosions, setExplosions] = useState<Array<{ x: number; y: number; color: string }>>([])
+  const [explosions, setExplosions] = useState<
+    Array<{ x: number; y: number; color: string }>
+  >([]);
 
   const handleTechClick = (index: number, event: React.MouseEvent) => {
-    const rect = event.currentTarget.getBoundingClientRect()
-    const x = rect.left + rect.width / 2
-    const y = rect.top + rect.height / 2
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
 
-    setExplosions((prev) => [...prev, { x, y, color: technologies[index].color }])
+    setExplosions((prev) => [
+      ...prev,
+      { x, y, color: technologies[index].color },
+    ]);
 
     setTimeout(() => {
-      setExplosions((prev) => prev.slice(1))
-    }, 2000)
-  }
+      setExplosions((prev) => prev.slice(1));
+    }, 2000);
+  };
 
   return (
     <div className="relative w-full h-96 flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-white/10 rounded-2xl">
@@ -267,7 +363,10 @@ export function TechParticleShowcase() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            {React.createElement(tech.icon, { className: "w-8 h-8", style: { color: tech.color } })}
+            {React.createElement(tech.icon, {
+              className: "w-8 h-8",
+              style: { color: tech.color },
+            })}
           </motion.div>
         ))}
       </div>
@@ -300,22 +399,22 @@ export function TechParticleShowcase() {
         </div>
       ))}
     </div>
-  )
+  );
 }
 
 // Magnetic Field Showcase
 export function TechMagneticShowcase() {
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (event: React.MouseEvent) => {
     if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect()
-      mouseX.set(event.clientX - rect.left - rect.width / 2)
-      mouseY.set(event.clientY - rect.top - rect.height / 2)
+      const rect = containerRef.current.getBoundingClientRect();
+      mouseX.set(event.clientX - rect.left - rect.width / 2);
+      mouseY.set(event.clientY - rect.top - rect.height / 2);
     }
-  }
+  };
 
   return (
     <div
@@ -324,10 +423,10 @@ export function TechMagneticShowcase() {
       onMouseMove={handleMouseMove}
     >
       {technologies.map((tech, index) => {
-        const angle = (index / technologies.length) * Math.PI * 2
-        const baseRadius = 100
-        const baseX = Math.cos(angle) * baseRadius
-        const baseY = Math.sin(angle) * baseRadius
+        const angle = (index / technologies.length) * Math.PI * 2;
+        const baseRadius = 100;
+        const baseX = Math.cos(angle) * baseRadius;
+        const baseY = Math.sin(angle) * baseRadius;
 
         return (
           <motion.div
@@ -345,9 +444,12 @@ export function TechMagneticShowcase() {
               y: baseY,
             }}
           >
-            {React.createElement(tech.icon, { className: "w-7 h-7", style: { color: tech.color } })}
+            {React.createElement(tech.icon, {
+              className: "w-7 h-7",
+              style: { color: tech.color },
+            })}
           </motion.div>
-        )
+        );
       })}
 
       <motion.div
@@ -355,7 +457,7 @@ export function TechMagneticShowcase() {
         style={{ x: mouseX, y: mouseY }}
       />
     </div>
-  )
+  );
 }
 
 // Solar System Showcase
@@ -365,7 +467,11 @@ export function TechSolarSystemShowcase() {
       <motion.div
         className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center"
         animate={{ rotate: 360 }}
-        transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+        transition={{
+          duration: 10,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "linear",
+        }}
       >
         <Zap className="w-8 h-8 text-white" />
       </motion.div>
@@ -383,57 +489,62 @@ export function TechSolarSystemShowcase() {
             }}
           />
 
-          {technologies.slice(orbitIndex * 3, (orbitIndex + 1) * 3).map((tech, planetIndex) => {
-            const speed = 15 + orbitIndex * 5
-            const startAngle = (planetIndex / 3) * 360
+          {technologies
+            .slice(orbitIndex * 3, (orbitIndex + 1) * 3)
+            .map((tech, planetIndex) => {
+              const speed = 15 + orbitIndex * 5;
+              const startAngle = (planetIndex / 3) * 360;
 
-            return (
-              <motion.div
-                key={tech.name}
-                className="absolute w-10 h-10 rounded-full glass border border-white/20 flex items-center justify-center"
-                style={{
-                  backgroundColor: `${tech.color}15`,
-                  left: "50%",
-                  top: "50%",
-                  marginLeft: "-20px",
-                  marginTop: "-20px",
-                }}
-                animate={{
-                  x: [
-                    Math.cos((startAngle * Math.PI) / 180) * radius,
-                    Math.cos(((startAngle + 360) * Math.PI) / 180) * radius,
-                  ],
-                  y: [
-                    Math.sin((startAngle * Math.PI) / 180) * radius,
-                    Math.sin(((startAngle + 360) * Math.PI) / 180) * radius,
-                  ],
-                }}
-                transition={{
-                  duration: speed,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "linear",
-                }}
-              >
-                {React.createElement(tech.icon, { className: "w-5 h-5", style: { color: tech.color } })}
-              </motion.div>
-            )
-          })}
+              return (
+                <motion.div
+                  key={tech.name}
+                  className="absolute w-10 h-10 rounded-full glass border border-white/20 flex items-center justify-center"
+                  style={{
+                    backgroundColor: `${tech.color}15`,
+                    left: "50%",
+                    top: "50%",
+                    marginLeft: "-20px",
+                    marginTop: "-20px",
+                  }}
+                  animate={{
+                    x: [
+                      Math.cos((startAngle * Math.PI) / 180) * radius,
+                      Math.cos(((startAngle + 360) * Math.PI) / 180) * radius,
+                    ],
+                    y: [
+                      Math.sin((startAngle * Math.PI) / 180) * radius,
+                      Math.sin(((startAngle + 360) * Math.PI) / 180) * radius,
+                    ],
+                  }}
+                  transition={{
+                    duration: speed,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "linear",
+                  }}
+                >
+                  {React.createElement(tech.icon, {
+                    className: "w-5 h-5",
+                    style: { color: tech.color },
+                  })}
+                </motion.div>
+              );
+            })}
         </div>
       ))}
     </div>
-  )
+  );
 }
 
 // Liquid Blob Showcase
 export function TechLiquidShowcase() {
-  const [currentTech, setCurrentTech] = useState(0)
+  const [currentTech, setCurrentTech] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTech((prev) => (prev + 1) % technologies.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
+      setCurrentTech((prev) => (prev + 1) % technologies.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="relative w-full h-96 flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-white/10 rounded-2xl">
@@ -475,13 +586,17 @@ export function TechLiquidShowcase() {
             })}
           </div>
           <div className="text-center">
-            <h3 className="text-lg font-bold text-white">{technologies[currentTech].name}</h3>
-            <p className="text-sm text-gray-400">{technologies[currentTech].description}</p>
+            <h3 className="text-lg font-bold text-white">
+              {technologies[currentTech].name}
+            </h3>
+            <p className="text-sm text-gray-400">
+              {technologies[currentTech].description}
+            </p>
           </div>
         </motion.div>
       </motion.div>
     </div>
-  )
+  );
 }
 
 // Hologram Showcase
@@ -520,8 +635,16 @@ export function TechHologramShowcase() {
               rotateY: [0, 180, 360],
             }}
             transition={{
-              y: { duration: 3, delay: index * 0.2, repeat: Number.POSITIVE_INFINITY },
-              rotateY: { duration: 6, delay: index * 0.3, repeat: Number.POSITIVE_INFINITY },
+              y: {
+                duration: 3,
+                delay: index * 0.2,
+                repeat: Number.POSITIVE_INFINITY,
+              },
+              rotateY: {
+                duration: 6,
+                delay: index * 0.3,
+                repeat: Number.POSITIVE_INFINITY,
+              },
             }}
             style={{ transformStyle: "preserve-3d" }}
           >
@@ -529,8 +652,14 @@ export function TechHologramShowcase() {
               className="w-16 h-16 rounded-lg glass border border-cyan-400/30 flex items-center justify-center relative"
               style={{ backgroundColor: `${tech.color}15` }}
             >
-              {React.createElement(tech.icon, { className: "w-8 h-8", style: { color: tech.color } })}
-              <div className="absolute inset-0 rounded-lg blur-sm opacity-50" style={{ backgroundColor: tech.color }} />
+              {React.createElement(tech.icon, {
+                className: "w-8 h-8",
+                style: { color: tech.color },
+              })}
+              <div
+                className="absolute inset-0 rounded-lg blur-sm opacity-50"
+                style={{ backgroundColor: tech.color }}
+              />
             </div>
 
             <motion.div
@@ -547,26 +676,24 @@ export function TechHologramShowcase() {
         <p className="text-cyan-300/60 text-xs">3D Projection Active</p>
       </div>
     </div>
-  )
+  );
 }
 
 // 3D Cube Showcase using Spline
 export function Tech3DCubeShowcase() {
   return (
-    <div className="relative w-full h-96 flex items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-white/10">
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20 rounded-2xl" />
-      <div className="w-full h-full">
-        <Spline scene="https://prod.spline.design/dzBbeI1atpspxW9A/scene.splinecode" />
-      </div>
+    <main className="w-full h-full">
+      <Spline scene="https://prod.spline.design/dzBbeI1atpspxW9A/scene.splinecode" />
+    </main>
+  );
+}
 
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-4 left-4 glass px-3 py-2 rounded-lg">
-          <p className="text-white text-sm font-medium">3D Tech Cubes</p>
-          <p className="text-gray-400 text-xs">Interactive 3D visualization</p>
-        </div>
-      </div>
-    </div>
-  )
+export function Tech3DKeyboard() {
+  return (
+    <main className="w-full h-full">
+      <Spline scene="https://prod.spline.design/ou-uMSY4unzfgmpL/scene.splinecode" />
+    </main>
+  );
 }
 
 // 3D Sphere Showcase
@@ -577,10 +704,10 @@ export function Tech3DSphereShowcase() {
 
       <div className="relative w-full h-full flex items-center justify-center">
         {technologies.slice(0, 8).map((tech, index) => {
-          const angle = (index / 8) * Math.PI * 2
-          const radius = 120
-          const x = Math.cos(angle) * radius
-          const y = Math.sin(angle) * radius
+          const angle = (index / 8) * Math.PI * 2;
+          const radius = 120;
+          const x = Math.cos(angle) * radius;
+          const y = Math.sin(angle) * radius;
 
           return (
             <motion.div
@@ -596,58 +723,76 @@ export function Tech3DSphereShowcase() {
                 scale: [1, 1.1, 1],
               }}
               transition={{
-                rotateY: { duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
-                scale: { duration: 2, repeat: Number.POSITIVE_INFINITY, delay: index * 0.2 },
+                rotateY: {
+                  duration: 8,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "linear",
+                },
+                scale: {
+                  duration: 2,
+                  repeat: Number.POSITIVE_INFINITY,
+                  delay: index * 0.2,
+                },
               }}
               whileHover={{ scale: 1.3, z: 20 }}
             >
-              {React.createElement(tech.icon, { className: "w-8 h-8", style: { color: tech.color } })}
+              {React.createElement(tech.icon, {
+                className: "w-8 h-8",
+                style: { color: tech.color },
+              })}
             </motion.div>
-          )
+          );
         })}
 
         <motion.div
           className="w-20 h-20 rounded-full bg-gradient-to-br from-white/20 to-transparent border border-white/30 flex items-center justify-center"
           animate={{ rotate: 360 }}
-          transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+          transition={{
+            duration: 10,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+          }}
         >
           <Zap className="w-10 h-10 text-white" />
         </motion.div>
       </div>
     </div>
-  )
+  );
 }
 
 // Constellation Showcase
 export function TechConstellationShowcase() {
-  const [connections, setConnections] = useState<Array<{ from: number; to: number }>>([])
+  const [connections, setConnections] = useState<
+    Array<{ from: number; to: number }>
+  >([]);
 
   useEffect(() => {
-    const newConnections = []
+    const newConnections = [];
     for (let i = 0; i < technologies.length; i++) {
-      const numConnections = Math.floor(Math.random() * 3) + 1
+      const numConnections = Math.floor(Math.random() * 3) + 1;
       for (let j = 0; j < numConnections; j++) {
-        const target = Math.floor(Math.random() * technologies.length)
+        const target = Math.floor(Math.random() * technologies.length);
         if (target !== i) {
-          newConnections.push({ from: i, to: target })
+          newConnections.push({ from: i, to: target });
         }
       }
     }
-    setConnections(newConnections)
-  }, [])
+    setConnections(newConnections);
+  }, []);
 
   return (
     <div className="relative w-full h-96 flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-white/10 rounded-2xl">
       <svg className="absolute inset-0 w-full h-full">
         {connections.map((connection, index) => {
-          const fromAngle = (connection.from / technologies.length) * Math.PI * 2
-          const toAngle = (connection.to / technologies.length) * Math.PI * 2
-          const radius = 140
+          const fromAngle =
+            (connection.from / technologies.length) * Math.PI * 2;
+          const toAngle = (connection.to / technologies.length) * Math.PI * 2;
+          const radius = 140;
 
-          const fromX = 200 + Math.cos(fromAngle) * radius
-          const fromY = 200 + Math.sin(fromAngle) * radius
-          const toX = 200 + Math.cos(toAngle) * radius
-          const toY = 200 + Math.sin(toAngle) * radius
+          const fromX = 200 + Math.cos(fromAngle) * radius;
+          const fromY = 200 + Math.sin(fromAngle) * radius;
+          const toX = 200 + Math.cos(toAngle) * radius;
+          const toY = 200 + Math.sin(toAngle) * radius;
 
           return (
             <motion.line
@@ -663,11 +808,17 @@ export function TechConstellationShowcase() {
               animate={{ pathLength: 1 }}
               transition={{ duration: 2, delay: index * 0.1 }}
             />
-          )
+          );
         })}
 
         <defs>
-          <linearGradient id="constellation-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient
+            id="constellation-gradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+          >
             <stop offset="0%" stopColor="#10b981" />
             <stop offset="100%" stopColor="#3b82f6" />
           </linearGradient>
@@ -675,10 +826,10 @@ export function TechConstellationShowcase() {
       </svg>
 
       {technologies.map((tech, index) => {
-        const angle = (index / technologies.length) * Math.PI * 2
-        const radius = 140
-        const x = Math.cos(angle) * radius
-        const y = Math.sin(angle) * radius
+        const angle = (index / technologies.length) * Math.PI * 2;
+        const radius = 140;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
 
         return (
           <motion.div
@@ -700,35 +851,42 @@ export function TechConstellationShowcase() {
             }}
             whileHover={{ scale: 1.5, zIndex: 10 }}
           >
-            {React.createElement(tech.icon, { className: "w-6 h-6", style: { color: tech.color } })}
+            {React.createElement(tech.icon, {
+              className: "w-6 h-6",
+              style: { color: tech.color },
+            })}
           </motion.div>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
 
 // Ripple Effect Showcase
 export function TechRippleShowcase() {
-  const [activeRipple, setActiveRipple] = useState(0)
+  const [activeRipple, setActiveRipple] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveRipple((prev) => (prev + 1) % technologies.length)
-    }, 800)
-    return () => clearInterval(interval)
-  }, [])
+      setActiveRipple((prev) => (prev + 1) % technologies.length);
+    }, 800);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="relative w-full h-96 flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-white/10 rounded-2xl">
       {technologies.map((tech, index) => {
-        const angle = (index / technologies.length) * Math.PI * 2
-        const radius = 120
-        const x = Math.cos(angle) * radius
-        const y = Math.sin(angle) * radius
+        const angle = (index / technologies.length) * Math.PI * 2;
+        const radius = 120;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
 
         return (
-          <div key={tech.name} className="absolute" style={{ transform: `translate(${x}px, ${y}px)` }}>
+          <div
+            key={tech.name}
+            className="absolute"
+            style={{ transform: `translate(${x}px, ${y}px)` }}
+          >
             {activeRipple === index && (
               <motion.div
                 className="absolute inset-0 rounded-full border-2"
@@ -744,45 +902,49 @@ export function TechRippleShowcase() {
               style={{ backgroundColor: `${tech.color}15` }}
               animate={{
                 scale: activeRipple === index ? [1, 1.3, 1] : 1,
-                borderColor: activeRipple === index ? tech.color : "rgba(255,255,255,0.2)",
+                borderColor:
+                  activeRipple === index ? tech.color : "rgba(255,255,255,0.2)",
               }}
               transition={{ duration: 0.5 }}
             >
-              {React.createElement(tech.icon, { className: "w-8 h-8", style: { color: tech.color } })}
+              {React.createElement(tech.icon, {
+                className: "w-8 h-8",
+                style: { color: tech.color },
+              })}
             </motion.div>
           </div>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
 
 // Geometric Morphing Showcase
 export function TechGeometricShowcase() {
-  const [currentShape, setCurrentShape] = useState(0)
-  const shapes = ["circle", "square", "triangle", "hexagon"]
+  const [currentShape, setCurrentShape] = useState(0);
+  const shapes = ["circle", "square", "triangle", "hexagon"];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentShape((prev) => (prev + 1) % shapes.length)
-    }, 2000)
-    return () => clearInterval(interval)
-  }, [])
+      setCurrentShape((prev) => (prev + 1) % shapes.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   const getShapeClipPath = (shape: string) => {
     switch (shape) {
       case "circle":
-        return "circle(50%)"
+        return "circle(50%)";
       case "square":
-        return "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
+        return "polygon(0 0, 100% 0, 100% 100%, 0 100%)";
       case "triangle":
-        return "polygon(50% 0%, 0% 100%, 100% 100%)"
+        return "polygon(50% 0%, 0% 100%, 100% 100%)";
       case "hexagon":
-        return "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)"
+        return "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)";
       default:
-        return "circle(50%)"
+        return "circle(50%)";
     }
-  }
+  };
 
   return (
     <div className="relative w-full h-96 flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-white/10 rounded-2xl">
@@ -797,8 +959,14 @@ export function TechGeometricShowcase() {
             }}
             transition={{ duration: 1, ease: "easeInOut" }}
           >
-            <div className="absolute inset-0 opacity-20" style={{ backgroundColor: tech.color }} />
-            {React.createElement(tech.icon, { className: "w-8 h-8 relative z-10", style: { color: tech.color } })}
+            <div
+              className="absolute inset-0 opacity-20"
+              style={{ backgroundColor: tech.color }}
+            />
+            {React.createElement(tech.icon, {
+              className: "w-8 h-8 relative z-10",
+              style: { color: tech.color },
+            })}
           </motion.div>
         ))}
       </div>
@@ -807,12 +975,12 @@ export function TechGeometricShowcase() {
         <p className="text-white text-sm">Shape: {shapes[currentShape]}</p>
       </div>
     </div>
-  )
+  );
 }
 
 // Network Graph Showcase
 export function TechNetworkShowcase() {
-  const [hoveredNode, setHoveredNode] = useState<number | null>(null)
+  const [hoveredNode, setHoveredNode] = useState<number | null>(null);
 
   const connections = [
     [0, 1],
@@ -830,22 +998,22 @@ export function TechNetworkShowcase() {
     [2, 7],
     [3, 8],
     [4, 9],
-  ]
+  ];
 
   return (
     <div className="relative w-full h-96 flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-white/10 rounded-2xl">
       <svg className="absolute inset-0 w-full h-full">
         {connections.map(([from, to], index) => {
-          const fromAngle = (from / technologies.length) * Math.PI * 2
-          const toAngle = (to / technologies.length) * Math.PI * 2
-          const radius = 120
+          const fromAngle = (from / technologies.length) * Math.PI * 2;
+          const toAngle = (to / technologies.length) * Math.PI * 2;
+          const radius = 120;
 
-          const fromX = 200 + Math.cos(fromAngle) * radius
-          const fromY = 200 + Math.sin(fromAngle) * radius
-          const toX = 200 + Math.cos(toAngle) * radius
-          const toY = 200 + Math.sin(toAngle) * radius
+          const fromX = 200 + Math.cos(fromAngle) * radius;
+          const fromY = 200 + Math.sin(fromAngle) * radius;
+          const toX = 200 + Math.cos(toAngle) * radius;
+          const toY = 200 + Math.sin(toAngle) * radius;
 
-          const isHighlighted = hoveredNode === from || hoveredNode === to
+          const isHighlighted = hoveredNode === from || hoveredNode === to;
 
           return (
             <motion.line
@@ -859,15 +1027,15 @@ export function TechNetworkShowcase() {
               animate={{ opacity: isHighlighted ? 1 : 0.3 }}
               transition={{ duration: 0.3 }}
             />
-          )
+          );
         })}
       </svg>
 
       {technologies.map((tech, index) => {
-        const angle = (index / technologies.length) * Math.PI * 2
-        const radius = 120
-        const x = Math.cos(angle) * radius
-        const y = Math.sin(angle) * radius
+        const angle = (index / technologies.length) * Math.PI * 2;
+        const radius = 120;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
 
         return (
           <motion.div
@@ -881,14 +1049,19 @@ export function TechNetworkShowcase() {
             onHoverEnd={() => setHoveredNode(null)}
             whileHover={{ scale: 1.3, zIndex: 10 }}
             animate={{
-              borderColor: hoveredNode === index ? tech.color : "rgba(255,255,255,0.2)",
-              boxShadow: hoveredNode === index ? `0 0 20px ${tech.color}50` : "none",
+              borderColor:
+                hoveredNode === index ? tech.color : "rgba(255,255,255,0.2)",
+              boxShadow:
+                hoveredNode === index ? `0 0 20px ${tech.color}50` : "none",
             }}
           >
-            {React.createElement(tech.icon, { className: "w-7 h-7", style: { color: tech.color } })}
+            {React.createElement(tech.icon, {
+              className: "w-7 h-7",
+              style: { color: tech.color },
+            })}
           </motion.div>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
