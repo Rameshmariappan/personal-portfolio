@@ -157,6 +157,23 @@ export default function Portfolio() {
   const [currentShowcase, setCurrentShowcase] = useState(0);
   const [isAutoplay, setIsAutoplay] = useState(true);
 
+  // Contact form state
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [formErrors, setFormErrors] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
   // Auto-rotate showcases
   useEffect(() => {
     if (!isAutoplay) return;
@@ -179,6 +196,107 @@ export default function Portfolio() {
   };
 
   const CurrentShowcaseComponent = showcaseVariants[currentShowcase].component;
+
+  // Form validation
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateForm = () => {
+    const errors = {
+      name: "",
+      email: "",
+      message: "",
+    };
+
+    let isValid = true;
+
+    if (!formData.name.trim()) {
+      errors.name = "Name is required";
+      isValid = false;
+    }
+
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+      isValid = false;
+    } else if (!validateEmail(formData.email)) {
+      errors.email = "Please enter a valid email address";
+      isValid = false;
+    }
+
+    if (!formData.message.trim()) {
+      errors.message = "Message is required";
+      isValid = false;
+    }
+
+    setFormErrors(errors);
+    return isValid;
+  };
+
+  // Handle form input changes
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear error when user starts typing
+    if (formErrors[name as keyof typeof formErrors]) {
+      setFormErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+    // Clear submit status when user starts typing
+    if (submitStatus.type) {
+      setSubmitStatus({ type: null, message: "" });
+    }
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      const response = await fetch(
+        "https://hooks.konnectify.co/webhook/v1/2VcA3cCnTy",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: "success",
+          message: "Message sent successfully! I'll get back to you soon.",
+        });
+        // Clear form
+        setFormData({ name: "", email: "", message: "" });
+        setFormErrors({ name: "", email: "", message: "" });
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message: "Failed to send message. Please try again or contact me directly at rameshmariappan.m@gmail.com",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
@@ -874,27 +992,35 @@ export default function Portfolio() {
                 </h3>
 
                 <div className="space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-emerald-400/20 flex items-center justify-center">
+                  <a
+                    href="mailto:rameshmariappan.m@gmail.com"
+                    className="flex items-center gap-4 group"
+                  >
+                    <div className="w-12 h-12 rounded-full bg-emerald-400/20 flex items-center justify-center group-hover:bg-emerald-400/30 transition-colors">
                       <Mail className="w-6 h-6 text-emerald-400" />
                     </div>
                     <div>
                       <p className="text-gray-400 text-sm">Email</p>
-                      <p className="text-white font-medium">
-                        ramaiah.dev@email.com
+                      <p className="text-white font-medium group-hover:text-emerald-400 transition-colors">
+                        rameshmariappan.m@gmail.com
                       </p>
                     </div>
-                  </div>
+                  </a>
 
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-emerald-400/20 flex items-center justify-center">
+                  <a
+                    href="tel:+917358848699"
+                    className="flex items-center gap-4 group"
+                  >
+                    <div className="w-12 h-12 rounded-full bg-emerald-400/20 flex items-center justify-center group-hover:bg-emerald-400/30 transition-colors">
                       <Phone className="w-6 h-6 text-emerald-400" />
                     </div>
                     <div>
                       <p className="text-gray-400 text-sm">Phone</p>
-                      <p className="text-white font-medium">+91 98765 43210</p>
+                      <p className="text-white font-medium group-hover:text-emerald-400 transition-colors">
+                        +91 7358848699
+                      </p>
                     </div>
-                  </div>
+                  </a>
 
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-full bg-emerald-400/20 flex items-center justify-center">
@@ -902,7 +1028,9 @@ export default function Portfolio() {
                     </div>
                     <div>
                       <p className="text-gray-400 text-sm">Location</p>
-                      <p className="text-white font-medium">Bangalore, India</p>
+                      <p className="text-white font-medium">
+                        Chennai, Tamil Nadu
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -912,20 +1040,36 @@ export default function Portfolio() {
                     Follow me on social media
                   </p>
                   <div className="flex gap-4">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="glass border-white/20 bg-transparent"
+                    <motion.a
+                      href="https://github.com/Rameshmariappan"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      <Github className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="glass border-white/20 bg-transparent"
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="glass border-white/20 bg-transparent hover:border-emerald-400/50 hover:text-emerald-400"
+                      >
+                        <Github className="w-4 h-4" />
+                      </Button>
+                    </motion.a>
+                    <motion.a
+                      href="https://www.linkedin.com/in/ramaiah-mariappan-software-developer/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      <Linkedin className="w-4 h-4" />
-                    </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="glass border-white/20 bg-transparent hover:border-emerald-400/50 hover:text-emerald-400"
+                      >
+                        <Linkedin className="w-4 h-4" />
+                      </Button>
+                    </motion.a>
                   </div>
                 </div>
               </CardContent>
@@ -937,16 +1081,33 @@ export default function Portfolio() {
                   Send a Message
                 </h3>
 
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
                       Name
                     </label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400/50 focus:ring-1 focus:ring-emerald-400/50"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-1 transition-colors ${
+                        formErrors.name
+                          ? "border-red-500/50 focus:border-red-400/50 focus:ring-red-400/50"
+                          : "border-white/10 focus:border-emerald-400/50 focus:ring-emerald-400/50"
+                      }`}
                       placeholder="Your name"
+                      disabled={isSubmitting}
                     />
+                    {formErrors.name && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-red-400 text-sm mt-1"
+                      >
+                        {formErrors.name}
+                      </motion.p>
+                    )}
                   </div>
 
                   <div>
@@ -955,9 +1116,26 @@ export default function Portfolio() {
                     </label>
                     <input
                       type="email"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400/50 focus:ring-1 focus:ring-emerald-400/50"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-1 transition-colors ${
+                        formErrors.email
+                          ? "border-red-500/50 focus:border-red-400/50 focus:ring-red-400/50"
+                          : "border-white/10 focus:border-emerald-400/50 focus:ring-emerald-400/50"
+                      }`}
                       placeholder="your.email@example.com"
+                      disabled={isSubmitting}
                     />
+                    {formErrors.email && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-red-400 text-sm mt-1"
+                      >
+                        {formErrors.email}
+                      </motion.p>
+                    )}
                   </div>
 
                   <div>
@@ -966,13 +1144,48 @@ export default function Portfolio() {
                     </label>
                     <textarea
                       rows={4}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400/50 focus:ring-1 focus:ring-emerald-400/50 resize-none"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-1 resize-none transition-colors ${
+                        formErrors.message
+                          ? "border-red-500/50 focus:border-red-400/50 focus:ring-red-400/50"
+                          : "border-white/10 focus:border-emerald-400/50 focus:ring-emerald-400/50"
+                      }`}
                       placeholder="Tell me about your project..."
+                      disabled={isSubmitting}
                     />
+                    {formErrors.message && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-red-400 text-sm mt-1"
+                      >
+                        {formErrors.message}
+                      </motion.p>
+                    )}
                   </div>
 
-                  <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
-                    Send Message
+                  {submitStatus.type && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className={`p-4 rounded-lg ${
+                        submitStatus.type === "success"
+                          ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-400"
+                          : "bg-red-500/10 border border-red-500/20 text-red-400"
+                      }`}
+                    >
+                      {submitStatus.message}
+                    </motion.div>
+                  )}
+
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </CardContent>

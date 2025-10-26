@@ -74,7 +74,12 @@ export function ModernNavigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button className="bg-emerald-500 hover:bg-emerald-600 text-black font-semibold px-6 py-2 rounded-lg glow-green">
+              <Button
+                className="bg-emerald-500 hover:bg-emerald-600 text-black font-semibold px-6 py-2 rounded-lg glow-green"
+                onClick={() =>
+                  (window.location.href = "mailto:rameshmariappan.m@gmail.com")
+                }
+              >
                 Hire Me
               </Button>
             </motion.div>
@@ -120,7 +125,14 @@ export function ModernNavigation() {
               animate={{ opacity: isOpen ? 1 : 0 }}
               transition={{ delay: 0.3 }}
             >
-              <Button className="w-full bg-emerald-500 hover:bg-emerald-600 text-black font-semibold">Hire Me</Button>
+              <Button
+                className="w-full bg-emerald-500 hover:bg-emerald-600 text-black font-semibold"
+                onClick={() =>
+                  (window.location.href = "mailto:rameshmariappan.m@gmail.com")
+                }
+              >
+                Hire Me
+              </Button>
             </motion.div>
           </div>
         </motion.div>
