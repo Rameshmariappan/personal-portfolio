@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import { ModernHero } from "@/components/modern-hero"
-import { ModernNavigation } from "@/components/modern-navigation"
-import { ModernSection } from "@/components/modern-section"
-import { ModernCard } from "@/components/modern-card"
-import { AnimatedCounter } from "@/components/animated-counter"
-import { ScrollRevealText, AnimatedText } from "@/components/animated-text"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import Image from "next/image"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ModernHero } from "@/components/modern-hero";
+import { ModernNavigation } from "@/components/modern-navigation";
+import { ModernSection } from "@/components/modern-section";
+import { ModernCard } from "@/components/modern-card";
+import { AnimatedCounter } from "@/components/animated-counter";
+import { ScrollRevealText, AnimatedText } from "@/components/animated-text";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
 import {
   Mail,
   Phone,
@@ -34,7 +34,7 @@ import {
   Users,
   Rocket,
   Sparkles,
-} from "lucide-react"
+} from "lucide-react";
 import {
   TechGridShowcase,
   Tech3DCubeShowcase,
@@ -52,73 +52,87 @@ import {
   TechSolarSystemShowcase,
   TechLiquidShowcase,
   TechHologramShowcase,
-} from "@/components/tech-showcase-variants"
+  Tech3DKeyboard,
+} from "@/components/tech-showcase-variants";
 
 const showcaseVariants = [
   {
     name: "Grid Animation",
     component: TechGridShowcase,
-    description: "Hover over the technology cards to see interactive effects and floating particles",
+    description:
+      "Hover over the technology cards to see interactive effects and floating particles",
   },
   {
     name: "Wave Effect",
     component: TechWaveShowcase,
-    description: "Watch the wave animation as technologies float up and down with rhythm",
+    description:
+      "Watch the wave animation as technologies float up and down with rhythm",
   },
   {
     name: "Orbital Motion",
     component: TechOrbitalShowcase,
-    description: "Technologies orbit around the central core in real-time with smooth rotation",
+    description:
+      "Technologies orbit around the central core in real-time with smooth rotation",
   },
   {
     name: "Matrix Rain",
     component: TechMatrixShowcase,
-    description: "Matrix-style rain effect with rotating technology display every 2 seconds",
+    description:
+      "Matrix-style rain effect with rotating technology display every 2 seconds",
   },
   {
     name: "DNA Helix",
     component: TechHelixShowcase,
-    description: "DNA helix structure with technologies spiraling in 3D space with connections",
+    description:
+      "DNA helix structure with technologies spiraling in 3D space with connections",
   },
   {
     name: "Particle System",
     component: TechParticleShowcase,
-    description: "Interactive particle explosions when hovering over technology nodes",
+    description:
+      "Interactive particle explosions when hovering over technology nodes",
   },
   {
     name: "Magnetic Field",
     component: TechMagneticShowcase,
-    description: "Move your mouse to create magnetic attraction effects on floating technologies",
+    description:
+      "Move your mouse to create magnetic attraction effects on floating technologies",
   },
   {
     name: "Solar System",
     component: TechSolarSystemShowcase,
-    description: "Technologies orbit like planets around a central sun with realistic physics",
+    description:
+      "Technologies orbit like planets around a central sun with realistic physics",
   },
   {
     name: "Liquid Blob",
     component: TechLiquidShowcase,
-    description: "Morphing liquid blob that cycles through technologies with fluid animations",
+    description:
+      "Morphing liquid blob that cycles through technologies with fluid animations",
   },
   {
     name: "Hologram",
     component: TechHologramShowcase,
-    description: "Futuristic holographic display with 3D tech projections and scan lines",
+    description:
+      "Futuristic holographic display with 3D tech projections and scan lines",
   },
   {
     name: "3D Cubes",
     component: Tech3DCubeShowcase,
-    description: "Interactive 3D cubes floating in space with realistic lighting and shadows using Spline",
+    description:
+      "Interactive 3D cubes floating in space with realistic lighting and shadows using Spline",
   },
   {
     name: "3D Spheres",
     component: Tech3DSphereShowcase,
-    description: "Floating 3D spheres orbiting in a circular pattern with metallic materials",
+    description:
+      "Floating 3D spheres orbiting in a circular pattern with metallic materials",
   },
   {
     name: "Constellation",
     component: TechConstellationShowcase,
-    description: "Star constellation pattern with connecting lines and pulsing tech nodes",
+    description:
+      "Star constellation pattern with connecting lines and pulsing tech nodes",
   },
   {
     name: "Ripple Effect",
@@ -128,46 +142,53 @@ const showcaseVariants = [
   {
     name: "Geometric",
     component: TechGeometricShowcase,
-    description: "Geometric shapes that morph and transform while displaying technology icons",
+    description:
+      "Geometric shapes that morph and transform while displaying technology icons",
   },
   {
     name: "Network Graph",
     component: TechNetworkShowcase,
-    description: "Interactive network graph showing connections between related technologies",
+    description:
+      "Interactive network graph showing connections between related technologies",
   },
-]
+];
 
 export default function Portfolio() {
-  const [currentShowcase, setCurrentShowcase] = useState(0)
-  const [isAutoplay, setIsAutoplay] = useState(true)
+  const [currentShowcase, setCurrentShowcase] = useState(0);
+  const [isAutoplay, setIsAutoplay] = useState(true);
 
   // Auto-rotate showcases
   useEffect(() => {
-    if (!isAutoplay) return
+    if (!isAutoplay) return;
 
     const interval = setInterval(() => {
-      setCurrentShowcase((prev) => (prev + 1) % showcaseVariants.length)
-    }, 4000)
+      setCurrentShowcase((prev) => (prev + 1) % showcaseVariants.length);
+    }, 4000);
 
-    return () => clearInterval(interval)
-  }, [isAutoplay])
+    return () => clearInterval(interval);
+  }, [isAutoplay]);
 
   const nextShowcase = () => {
-    setCurrentShowcase((prev) => (prev + 1) % showcaseVariants.length)
-  }
+    setCurrentShowcase((prev) => (prev + 1) % showcaseVariants.length);
+  };
 
   const prevShowcase = () => {
-    setCurrentShowcase((prev) => (prev - 1 + showcaseVariants.length) % showcaseVariants.length)
-  }
+    setCurrentShowcase(
+      (prev) => (prev - 1 + showcaseVariants.length) % showcaseVariants.length
+    );
+  };
 
-  const CurrentShowcaseComponent = showcaseVariants[currentShowcase].component
+  const CurrentShowcaseComponent = showcaseVariants[currentShowcase].component;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       <ModernNavigation />
 
       {/* Hero Section */}
-      <ModernSection id="home" className="min-h-screen flex items-center justify-center px-4">
+      <ModernSection
+        id="home"
+        className="min-h-screen flex items-center justify-center px-4"
+      >
         <ModernHero />
       </ModernSection>
 
@@ -294,7 +315,11 @@ export default function Portfolio() {
                     opacity: { delay: 0.5, duration: 0.5 },
                     scale: { delay: 0.5, duration: 0.5 },
                     rotateZ: { delay: 0.5, duration: 0.5 },
-                    y: { duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+                    y: {
+                      duration: 3,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                    },
                   }}
                   whileHover={{ scale: 1.1, rotateZ: 5 }}
                 >
@@ -302,7 +327,9 @@ export default function Portfolio() {
                     <div className="text-xl font-bold text-emerald-400">
                       <AnimatedCounter value={4} suffix="+" />
                     </div>
-                    <div className="text-xs text-muted-foreground font-mono">YEARS</div>
+                    <div className="text-xs text-muted-foreground font-mono">
+                      YEARS
+                    </div>
                   </div>
                 </motion.div>
 
@@ -319,7 +346,12 @@ export default function Portfolio() {
                     opacity: { delay: 0.7, duration: 0.5 },
                     scale: { delay: 0.7, duration: 0.5 },
                     rotateZ: { delay: 0.7, duration: 0.5 },
-                    y: { duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 },
+                    y: {
+                      duration: 4,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                      delay: 1,
+                    },
                   }}
                   whileHover={{ scale: 1.1, rotateZ: -5 }}
                 >
@@ -327,12 +359,13 @@ export default function Portfolio() {
                     <div className="text-xl font-bold text-blue-400">
                       <AnimatedCounter value={50} suffix="+" />
                     </div>
-                    <div className="text-xs text-muted-foreground font-mono">PROJECTS</div>
+                    <div className="text-xs text-muted-foreground font-mono">
+                      PROJECTS
+                    </div>
                   </div>
                 </motion.div>
               </div>
             </motion.div>
-
             {/* About Content */}
             <motion.div
               className="space-y-8"
@@ -370,13 +403,15 @@ export default function Portfolio() {
                   <p className="text-muted-foreground ml-8">
                     B.E. in Computer Science & Engineering
                     <br />
-                    <span className="text-emerald-400">Anna University, 2021</span>
+                    <span className="text-emerald-400">
+                      Anna University, 2021
+                    </span>
                   </p>
                 </motion.div>
               </div>
 
               {/* Stats Grid */}
-              <div className="grid grid-cols-2 gap-6">
+              {/* <div className="grid grid-cols-2 gap-6">
                 <ModernCard delay={0.4} glowColor="blue">
                   <div className="p-6 text-center space-y-3">
                     <motion.div
@@ -390,7 +425,9 @@ export default function Portfolio() {
                       <div className="text-2xl font-bold text-blue-400 font-mono">
                         <AnimatedCounter value={20} suffix="K+" />
                       </div>
-                      <div className="text-sm text-muted-foreground">Users Served</div>
+                      <div className="text-sm text-muted-foreground">
+                        Users Served
+                      </div>
                     </div>
                   </div>
                 </ModernCard>
@@ -408,14 +445,16 @@ export default function Portfolio() {
                       <div className="text-2xl font-bold text-purple-400 font-mono">
                         <AnimatedCounter value={50} suffix="+" />
                       </div>
-                      <div className="text-sm text-muted-foreground">Projects Delivered</div>
+                      <div className="text-sm text-muted-foreground">
+                        Projects Delivered
+                      </div>
                     </div>
                   </div>
                 </ModernCard>
-              </div>
+              </div> */}
 
               {/* Performance Card */}
-              <ModernCard delay={0.8} glowColor="emerald">
+              {/* <ModernCard delay={0.8} glowColor="emerald">
                 <div className="p-8 text-center space-y-4">
                   <motion.div
                     className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20"
@@ -429,16 +468,19 @@ export default function Portfolio() {
                     <motion.div className="text-4xl font-bold text-emerald-400 font-mono">
                       <AnimatedCounter value={120} suffix="%" />
                     </motion.div>
-                    <div className="text-white font-semibold">Performance Boost</div>
-                    <div className="text-sm text-muted-foreground">Average UI optimization results</div>
+                    <div className="text-white font-semibold">
+                      Performance Boost
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      Average UI optimization results
+                    </div>
                   </div>
                 </div>
-              </ModernCard>
+              </ModernCard> */}
             </motion.div>
           </div>
         </div>
       </ModernSection>
-
       {/* Skills & Technologies Section */}
       <ModernSection id="skills" className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
@@ -466,179 +508,121 @@ export default function Portfolio() {
               delay={0.3}
               stagger={0.03}
             />
-
-            {/* Showcase Controls */}
-            <div className="flex items-center justify-center gap-4 mb-8 flex-wrap">
-              <motion.button
-                onClick={prevShowcase}
-                className="p-2 rounded-full glass border border-white/10 hover:border-white/20 text-white"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </motion.button>
-
-              <div className="flex items-center gap-2 flex-wrap justify-center max-w-4xl">
-                {showcaseVariants.map((showcase, index) => (
-                  <motion.button
-                    key={showcase.name}
-                    onClick={() => setCurrentShowcase(index)}
-                    className={`px-3 py-2 rounded-full text-xs font-medium transition-all ${
-                      index === currentShowcase
-                        ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
-                        : "glass border border-white/10 text-white/60 hover:text-white hover:border-white/20"
-                    }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {showcase.name}
-                  </motion.button>
-                ))}
-              </div>
-
-              <motion.button
-                onClick={nextShowcase}
-                className="p-2 rounded-full glass border border-white/10 hover:border-white/20 text-white"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronRight className="w-5 h-5" />
-              </motion.button>
-
-              <motion.button
-                onClick={() => setIsAutoplay(!isAutoplay)}
-                className={`p-2 rounded-full border transition-all ${
-                  isAutoplay
-                    ? "bg-emerald-500/20 border-emerald-500/30 text-emerald-400"
-                    : "glass border-white/10 hover:border-white/20 text-white"
-                }`}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {isAutoplay ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-              </motion.button>
-            </div>
           </motion.div>
-
-          {/* Current Showcase */}
-          <motion.div
-            key={currentShowcase}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <CurrentShowcaseComponent />
-          </motion.div>
-
-          {/* Showcase Description */}
-          <motion.div
-            className="text-center mt-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <div className="flex items-center justify-center gap-4 mb-4 flex-wrap">
-              <p className="text-muted-foreground">
-                Currently showing:{" "}
-                <span className="text-emerald-400 font-semibold">{showcaseVariants[currentShowcase].name}</span>
-              </p>
-              {isAutoplay && (
-                <motion.div
-                  className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm"
-                  animate={{ opacity: [0.5, 1, 0.5] }}
-                  transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                >
-                  <Play className="w-3 h-3" />
-                  Auto-playing
-                </motion.div>
-              )}
-            </div>
-            <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-              {showcaseVariants[currentShowcase].description}
-            </p>
-
-            {/* Progress Indicator */}
-            <div className="flex justify-center gap-2 mt-6 flex-wrap">
-              {showcaseVariants.map((_, index) => (
-                <motion.div
-                  key={index}
-                  className="w-2 h-2 rounded-full transition-all duration-300 cursor-pointer"
-                  style={{
-                    backgroundColor: index === currentShowcase ? "#10b981" : "rgba(255,255,255,0.2)",
-                  }}
-                  animate={{
-                    scale: index === currentShowcase ? 1.2 : 1,
-                  }}
-                  onClick={() => setCurrentShowcase(index)}
-                  whileHover={{ scale: 1.3 }}
-                />
-              ))}
-            </div>
-          </motion.div>
-
           {/* Technology Categories */}
-          <div className="grid md:grid-cols-3 gap-8 mt-16">
-            <ModernCard delay={0.2} glowColor="blue">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-white">
-                  <Globe className="w-6 h-6 text-blue-400" />
-                  Frontend
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"].map((tech) => (
-                    <Badge key={tech} variant="secondary" className="bg-blue-400/20 text-blue-300 border-blue-400/30">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </ModernCard>
+          <div className="grid md:grid-cols-2 gap-8 mt-16">
+            <div className="grid md:grid-cols-1 gap-8 mt-16">
+              <ModernCard delay={0.2} glowColor="blue">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-3 text-white">
+                    <Globe className="w-6 h-6 text-blue-400" />
+                    Frontend
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      "React",
+                      "Next.js",
+                      "TypeScript",
+                      "Tailwind CSS",
+                      "Framer Motion",
+                    ].map((tech) => (
+                      <Badge
+                        key={tech}
+                        variant="secondary"
+                        className="bg-blue-400/20 text-blue-300 border-blue-400/30"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </ModernCard>
 
-            <ModernCard delay={0.4} glowColor="emerald">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-white">
-                  <Database className="w-6 h-6 text-emerald-400" />
-                  Backend
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {["Node.js", "Express", "PostgreSQL", "MongoDB", "Redis"].map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="secondary"
-                      className="bg-emerald-400/20 text-emerald-300 border-emerald-400/30"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </ModernCard>
+              <ModernCard delay={0.4} glowColor="emerald">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-3 text-white">
+                    <Database className="w-6 h-6 text-emerald-400" />
+                    Backend
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      "Node.js",
+                      "Express",
+                      "PostgreSQL",
+                      "MongoDB",
+                      "Redis",
+                    ].map((tech) => (
+                      <Badge
+                        key={tech}
+                        variant="secondary"
+                        className="bg-emerald-400/20 text-emerald-300 border-emerald-400/30"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </ModernCard>
 
-            <ModernCard delay={0.6} glowColor="purple">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-white">
-                  <Cloud className="w-6 h-6 text-purple-400" />
-                  DevOps
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {["Docker", "AWS", "Vercel", "GitHub Actions", "Nginx"].map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="secondary"
-                      className="bg-purple-400/20 text-purple-300 border-purple-400/30"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </ModernCard>
+              <ModernCard delay={0.6} glowColor="purple">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-3 text-white">
+                    <Cloud className="w-6 h-6 text-purple-400" />
+                    DevOps
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {["Docker", "AWS", "Vercel", "GitHub Actions", "Nginx"].map(
+                      (tech) => (
+                        <Badge
+                          key={tech}
+                          variant="secondary"
+                          className="bg-purple-400/20 text-purple-300 border-purple-400/30"
+                        >
+                          {tech}
+                        </Badge>
+                      )
+                    )}
+                  </div>
+                </CardContent>
+              </ModernCard>
+
+              <ModernCard delay={0.2} glowColor="blue">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-3 text-white">
+                    <Globe className="w-6 h-6 text-blue-400" />
+                    Frontend
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      "React",
+                      "Next.js",
+                      "TypeScript",
+                      "Tailwind CSS",
+                      "Framer Motion",
+                    ].map((tech) => (
+                      <Badge
+                        key={tech}
+                        variant="secondary"
+                        className="bg-blue-400/20 text-blue-300 border-blue-400/30"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </ModernCard>
+            </div>
+            <div className="grid md:grid-cols-1 gap-8 mt-16">
+              <Tech3DKeyboard />
+            </div>
           </div>
         </div>
       </ModernSection>
@@ -655,7 +639,10 @@ export default function Portfolio() {
               <span className="text-orange-400">Professional Journey</span>
             </motion.div>
 
-            <ScrollRevealText text="Work Experience" className="text-5xl lg:text-6xl font-bold mb-6" />
+            <ScrollRevealText
+              text="Work Experience"
+              className="text-5xl lg:text-6xl font-bold mb-6"
+            />
 
             <AnimatedText
               text="Building scalable solutions and leading technical initiatives across diverse projects and teams."
@@ -670,7 +657,11 @@ export default function Portfolio() {
             <ModernCard delay={0.2} hover={false} glowColor="emerald">
               <div className="p-8">
                 <div className="flex flex-col lg:flex-row lg:items-start gap-8">
-                  <motion.div className="flex-shrink-0" whileHover={{ rotate: 360 }} transition={{ duration: 0.8 }}>
+                  <motion.div
+                    className="flex-shrink-0"
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.8 }}
+                  >
                     <div className="w-20 h-20 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
                       <Code2 className="w-10 h-10 text-emerald-400" />
                     </div>
@@ -683,7 +674,9 @@ export default function Portfolio() {
                         className="text-2xl font-bold text-white"
                         stagger={0.03}
                       />
-                      <p className="text-xl text-emerald-400 font-semibold">Konnectify Pvt Ltd</p>
+                      <p className="text-xl text-emerald-400 font-semibold">
+                        Konnectify Pvt Ltd
+                      </p>
                       <div className="flex items-center gap-2 text-muted-foreground">
                         <span className="font-mono">Oct 2023 – Present</span>
                       </div>
@@ -718,7 +711,14 @@ export default function Portfolio() {
                       viewport={{ once: true }}
                       transition={{ delay: 0.5 }}
                     >
-                      {["React", "Next.js", "Node.js", "TypeScript", "GCP", "Docker"].map((tech) => (
+                      {[
+                        "React",
+                        "Next.js",
+                        "Node.js",
+                        "TypeScript",
+                        "GCP",
+                        "Docker",
+                      ].map((tech) => (
                         <Badge
                           key={tech}
                           variant="secondary"
@@ -749,7 +749,8 @@ export default function Portfolio() {
               Featured <span className="text-emerald-400">Projects</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              A showcase of my recent work, demonstrating my skills in full-stack development and problem-solving.
+              A showcase of my recent work, demonstrating my skills in
+              full-stack development and problem-solving.
             </p>
           </motion.div>
 
@@ -757,8 +758,10 @@ export default function Portfolio() {
             {[
               {
                 title: "E-Commerce Platform",
-                description: "Full-stack e-commerce solution with React, Node.js, and PostgreSQL",
-                image: "/placeholder.svg?height=200&width=300&text=E-Commerce+Platform",
+                description:
+                  "Full-stack e-commerce solution with React, Node.js, and PostgreSQL",
+                image:
+                  "/placeholder.svg?height=200&width=300&text=E-Commerce+Platform",
                 tech: ["React", "Node.js", "PostgreSQL", "Stripe"],
                 github: "#",
                 live: "#",
@@ -766,8 +769,10 @@ export default function Portfolio() {
               },
               {
                 title: "Task Management App",
-                description: "Collaborative task management with real-time updates and team features",
-                image: "/placeholder.svg?height=200&width=300&text=Task+Management+App",
+                description:
+                  "Collaborative task management with real-time updates and team features",
+                image:
+                  "/placeholder.svg?height=200&width=300&text=Task+Management+App",
                 tech: ["Next.js", "Socket.io", "MongoDB", "Tailwind"],
                 github: "#",
                 live: "#",
@@ -775,15 +780,21 @@ export default function Portfolio() {
               },
               {
                 title: "Analytics Dashboard",
-                description: "Data visualization dashboard with interactive charts and real-time metrics",
-                image: "/placeholder.svg?height=200&width=300&text=Analytics+Dashboard",
+                description:
+                  "Data visualization dashboard with interactive charts and real-time metrics",
+                image:
+                  "/placeholder.svg?height=200&width=300&text=Analytics+Dashboard",
                 tech: ["React", "D3.js", "Express", "Redis"],
                 github: "#",
                 live: "#",
                 color: "purple",
               },
             ].map((project, index) => (
-              <ModernCard key={project.title} delay={index * 0.2} glowColor={project.color as any}>
+              <ModernCard
+                key={project.title}
+                delay={index * 0.2}
+                glowColor={project.color as any}
+              >
                 <CardContent className="p-0">
                   <div className="relative overflow-hidden rounded-t-lg">
                     <img
@@ -795,23 +806,36 @@ export default function Portfolio() {
                   </div>
 
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+                    <h3 className="text-xl font-bold text-white mb-2">
+                      {project.title}
+                    </h3>
                     <p className="text-gray-300 mb-4">{project.description}</p>
 
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.tech.map((tech) => (
-                        <Badge key={tech} variant="secondary" className="text-xs">
+                        <Badge
+                          key={tech}
+                          variant="secondary"
+                          className="text-xs"
+                        >
                           {tech}
                         </Badge>
                       ))}
                     </div>
 
                     <div className="flex gap-3">
-                      <Button size="sm" variant="outline" className="flex-1 bg-transparent">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="flex-1 bg-transparent"
+                      >
                         <Github className="w-4 h-4 mr-2" />
                         Code
                       </Button>
-                      <Button size="sm" className="flex-1 bg-emerald-600 hover:bg-emerald-700">
+                      <Button
+                        size="sm"
+                        className="flex-1 bg-emerald-600 hover:bg-emerald-700"
+                      >
                         <ExternalLink className="w-4 h-4 mr-2" />
                         Live Demo
                       </Button>
@@ -837,14 +861,17 @@ export default function Portfolio() {
               Get In <span className="text-emerald-400">Touch</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Ready to bring your ideas to life? Let's discuss your next project and create something amazing together.
+              Ready to bring your ideas to life? Let's discuss your next project
+              and create something amazing together.
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-12">
             <ModernCard delay={0.2} glowColor="emerald">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
+                <h3 className="text-2xl font-bold text-white mb-6">
+                  Contact Information
+                </h3>
 
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
@@ -853,7 +880,9 @@ export default function Portfolio() {
                     </div>
                     <div>
                       <p className="text-gray-400 text-sm">Email</p>
-                      <p className="text-white font-medium">ramaiah.dev@email.com</p>
+                      <p className="text-white font-medium">
+                        ramaiah.dev@email.com
+                      </p>
                     </div>
                   </div>
 
@@ -879,12 +908,22 @@ export default function Portfolio() {
                 </div>
 
                 <div className="mt-8 pt-8 border-t border-white/10">
-                  <p className="text-gray-400 mb-4">Follow me on social media</p>
+                  <p className="text-gray-400 mb-4">
+                    Follow me on social media
+                  </p>
                   <div className="flex gap-4">
-                    <Button size="sm" variant="outline" className="glass border-white/20 bg-transparent">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="glass border-white/20 bg-transparent"
+                    >
                       <Github className="w-4 h-4" />
                     </Button>
-                    <Button size="sm" variant="outline" className="glass border-white/20 bg-transparent">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="glass border-white/20 bg-transparent"
+                    >
                       <Linkedin className="w-4 h-4" />
                     </Button>
                   </div>
@@ -894,11 +933,15 @@ export default function Portfolio() {
 
             <ModernCard delay={0.4} glowColor="blue">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
+                <h3 className="text-2xl font-bold text-white mb-6">
+                  Send a Message
+                </h3>
 
                 <form className="space-y-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Name
+                    </label>
                     <input
                       type="text"
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400/50 focus:ring-1 focus:ring-emerald-400/50"
@@ -907,7 +950,9 @@ export default function Portfolio() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Email
+                    </label>
                     <input
                       type="email"
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400/50 focus:ring-1 focus:ring-emerald-400/50"
@@ -916,7 +961,9 @@ export default function Portfolio() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Message
+                    </label>
                     <textarea
                       rows={4}
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-emerald-400/50 focus:ring-1 focus:ring-emerald-400/50 resize-none"
@@ -924,7 +971,9 @@ export default function Portfolio() {
                     />
                   </div>
 
-                  <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">Send Message</Button>
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
+                    Send Message
+                  </Button>
                 </form>
               </CardContent>
             </ModernCard>
@@ -935,9 +984,12 @@ export default function Portfolio() {
       {/* Footer */}
       <footer className="py-8 px-4 border-t border-white/10">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-gray-400">© 2024 Ramaiah M. All rights reserved. Built with Next.js and Tailwind CSS.</p>
+          <p className="text-gray-400">
+            © 2024 Ramaiah M. All rights reserved. Built with Next.js and
+            Tailwind CSS.
+          </p>
         </div>
       </footer>
     </div>
-  )
+  );
 }

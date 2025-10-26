@@ -1,19 +1,20 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ArrowDown, Download, Mail, Github, Linkedin } from "lucide-react"
-import { ScrollRevealText, AnimatedText } from "@/components/animated-text"
-import { FloatingElements } from "@/components/floating-elements"
-import Spline from "@splinetool/react-spline/next"
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowDown, Download, Mail, Github, Linkedin } from "lucide-react";
+import { ScrollRevealText, AnimatedText } from "@/components/animated-text";
+import { FloatingElements } from "@/components/floating-elements";
+import Spline from "@splinetool/react-spline/next";
+import { Tech3DCubeShowcase } from "./tech-showcase-variants";
 
 export function ModernHero() {
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -62,7 +63,11 @@ export function ModernHero() {
 
           {/* Main Heading */}
           <div className="space-y-4">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
               <p className="text-xl text-muted-foreground mb-2">Hello, I'm</p>
             </motion.div>
 
@@ -163,11 +168,11 @@ export function ModernHero() {
             />
 
             {/* 3D Spline Bot */}
-            <div className="relative z-10 w-full h-full rounded-3xl overflow-hidden glass border border-white/10">
-              <Spline scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode" />
-
+            <div className="relative z-10 w-full h-full rounded-3xl overflow-hidden">
+              {/* <Spline scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode" /> */}
+              <Tech3DCubeShowcase />
               {/* Overlay for better integration */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent pointer-events-none" />
+              {/* <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent pointer-events-none" /> */}
             </div>
 
             {/* Floating Stats */}
@@ -240,5 +245,5 @@ export function ModernHero() {
         </motion.button>
       </motion.div>
     </div>
-  )
+  );
 }
