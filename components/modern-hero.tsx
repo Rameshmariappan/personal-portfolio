@@ -16,6 +16,16 @@ export function ModernHero() {
     }
   };
 
+  const handleDownloadCV = () => {
+    // Create a link element and trigger download
+    const link = document.createElement("a");
+    link.href = "/cv.pdf";
+    link.download = "Ramaiah_M_CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Elements */}
@@ -111,6 +121,7 @@ export function ModernHero() {
               size="lg"
               variant="outline"
               className="glass border-white/20 hover:border-emerald-400/50 px-8 py-6 text-lg font-semibold rounded-xl group bg-transparent"
+              onClick={handleDownloadCV}
             >
               <Download className="w-5 h-5 mr-2 group-hover:translate-y-1 transition-transform" />
               Download CV
@@ -127,12 +138,22 @@ export function ModernHero() {
             <span className="text-muted-foreground">Follow me:</span>
             <div className="flex gap-3">
               {[
-                { icon: Github, href: "#", label: "GitHub" },
-                { icon: Linkedin, href: "#", label: "LinkedIn" },
+                {
+                  icon: Github,
+                  href: "https://github.com/Rameshmariappan",
+                  label: "GitHub",
+                },
+                {
+                  icon: Linkedin,
+                  href: "https://www.linkedin.com/in/ramaiah-mariappan-software-developer/",
+                  label: "LinkedIn",
+                },
               ].map(({ icon: Icon, href, label }) => (
                 <motion.a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="p-3 rounded-xl glass border border-white/10 hover:border-emerald-400/50 text-muted-foreground hover:text-emerald-400 transition-all"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
