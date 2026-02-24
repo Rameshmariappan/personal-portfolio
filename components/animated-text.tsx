@@ -47,8 +47,8 @@ export function ScrollRevealText({ text, className = "" }: { text: string; class
           whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
           viewport={{ once: true }}
           transition={{
-            delay: index * 0.05,
-            duration: 0.6,
+            delay: index * 0.02,
+            duration: 0.4,
             ease: "easeOut",
           }}
           style={{ transformOrigin: "center bottom" }}

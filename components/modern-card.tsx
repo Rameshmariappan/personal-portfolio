@@ -9,7 +9,7 @@ interface ModernCardProps {
   className?: string
   delay?: number
   hover?: boolean
-  glowColor?: "emerald" | "blue" | "purple" | "orange" | "pink"
+  glowColor?: "emerald" | "blue" | "purple" | "orange"
 }
 
 export function ModernCard({
@@ -24,7 +24,6 @@ export function ModernCard({
     blue: "hover:shadow-blue-500/20",
     purple: "hover:shadow-purple-500/20",
     orange: "hover:shadow-orange-500/20",
-    pink: "hover:shadow-pink-500/20",
   }
 
   return (

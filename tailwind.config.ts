@@ -74,11 +74,6 @@ const config: Config = {
           500: "#f97316",
           600: "#ea580c",
         },
-        pink: {
-          400: "#f472b6",
-          500: "#ec4899",
-          600: "#db2777",
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
