@@ -1,34 +1,31 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { ArrowDown, Download, Mail, Github, Linkedin } from "lucide-react";
-import { ScrollRevealText, AnimatedText } from "@/components/animated-text";
-import { FloatingElements } from "@/components/floating-elements";
-import Spline from "@splinetool/react-spline/next";
-import { Tech3DCubeShowcase } from "./tech-showcase-variants";
+import { motion } from "framer-motion"
+import { Button } from "@/components/ui/button"
+import { ArrowDown, Download, Mail, Github, Linkedin } from "lucide-react"
+import { ScrollRevealText, TypewriterText } from "@/components/animated-text"
+import { FloatingElements } from "@/components/floating-elements"
+import { Tech3DCubeShowcase } from "./tech-showcase-variants"
 
 export function ModernHero() {
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
+    const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: "smooth" })
     }
-  };
+  }
 
   const handleDownloadCV = () => {
-    // Create a link element and trigger download
-    const link = document.createElement("a");
-    link.href = "/cv.pdf";
-    link.download = "Ramaiah_M_CV.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+    const link = document.createElement("a")
+    link.href = "/cv.pdf"
+    link.download = "Ramaiah_M_CV.pdf"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Elements */}
       <FloatingElements />
 
       {/* Animated Background Grid */}
@@ -40,14 +37,8 @@ export function ModernHero() {
             backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
             backgroundSize: "50px 50px",
           }}
-          animate={{
-            backgroundPosition: ["0px 0px", "50px 50px"],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
+          animate={{ backgroundPosition: ["0px 0px", "50px 50px"] }}
+          transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
         />
       </div>
 
@@ -68,45 +59,48 @@ export function ModernHero() {
             whileHover={{ scale: 1.05 }}
           >
             <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-            <span className="text-emerald-400">Available for new projects</span>
+            <span className="text-emerald-400">Senior Frontend Engineer @ Konnectify</span>
           </motion.div>
 
           {/* Main Heading */}
           <div className="space-y-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              <p className="text-xl text-muted-foreground mb-2">Hello, I'm</p>
-            </motion.div>
-
             <ScrollRevealText
               text="Ramaiah M"
-              className="text-6xl lg:text-7xl font-bold bg-gradient-to-r from-white via-emerald-200 to-emerald-400 bg-clip-text text-transparent"
+              className="text-6xl lg:text-7xl font-bold bg-gradient-to-r from-white via-emerald-200 to-emerald-400 bg-clip-text text-transparent font-outfit"
             />
 
-            <ScrollRevealText
-              text="Full Stack Developer"
-              className="text-3xl lg:text-4xl font-semibold text-emerald-400"
-              delay={0.5}
-            />
+            <div className="text-3xl lg:text-4xl font-semibold text-emerald-400 font-outfit h-[48px]">
+              <TypewriterText
+                texts={[
+                  "Senior Frontend Engineer",
+                  "React & Next.js Specialist",
+                  "SaaS Platform Architect",
+                  "AI-Augmented Developer",
+                ]}
+                className="text-3xl lg:text-4xl font-semibold text-emerald-400 font-outfit"
+              />
+            </div>
           </div>
 
           {/* Description */}
-          <AnimatedText
-            text="I craft exceptional digital experiences with modern web technologies. Specializing in React, Next.js, and Node.js to build scalable applications that make a difference."
+          <motion.p
             className="text-xl text-muted-foreground leading-relaxed max-w-2xl"
-            delay={0.8}
-            stagger={0.02}
-          />
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+          >
+            I build scalable SaaS platforms and automation dashboards with React, Next.js, and TypeScript.
+            Recent impact: <span className="text-emerald-400 font-semibold">25% performance improvement</span>,{" "}
+            <span className="text-emerald-400 font-semibold">40% user engagement increase</span>, and production apps serving{" "}
+            <span className="text-emerald-400 font-semibold">20K+ users</span>.
+          </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
             className="flex flex-col sm:flex-row gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2 }}
+            transition={{ delay: 1.0 }}
           >
             <Button
               size="lg"
@@ -133,21 +127,13 @@ export function ModernHero() {
             className="flex items-center gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.4 }}
+            transition={{ delay: 1.2 }}
           >
             <span className="text-muted-foreground">Follow me:</span>
             <div className="flex gap-3">
               {[
-                {
-                  icon: Github,
-                  href: "https://github.com/Rameshmariappan",
-                  label: "GitHub",
-                },
-                {
-                  icon: Linkedin,
-                  href: "https://www.linkedin.com/in/ramaiah-mariappan-software-developer/",
-                  label: "LinkedIn",
-                },
+                { icon: Github, href: "https://github.com/Rameshmariappan", label: "GitHub" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/ramaiah-mariappan-software-developer/", label: "LinkedIn" },
               ].map(({ icon: Icon, href, label }) => (
                 <motion.a
                   key={label}
@@ -165,7 +151,7 @@ export function ModernHero() {
           </motion.div>
         </motion.div>
 
-        {/* Right Content - 3D Spline Bot */}
+        {/* Right Content - 3D Spline Scene + Floating Stats */}
         <motion.div
           className="relative"
           initial={{ opacity: 0, x: 50 }}
@@ -181,19 +167,12 @@ export function ModernHero() {
                 rotate: [0, 180, 360],
                 opacity: [0.3, 0.6, 0.3],
               }}
-              transition={{
-                duration: 8,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
+              transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
             />
 
-            {/* 3D Spline Bot */}
+            {/* 3D Spline Scene */}
             <div className="relative z-10 w-full h-full rounded-3xl overflow-hidden">
-              {/* <Spline scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode" /> */}
               <Tech3DCubeShowcase />
-              {/* Overlay for better integration */}
-              {/* <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent pointer-events-none" /> */}
             </div>
 
             {/* Floating Stats */}
@@ -205,7 +184,7 @@ export function ModernHero() {
               whileHover={{ scale: 1.05 }}
             >
               <div className="text-center">
-                <div className="text-2xl font-bold text-emerald-400">4+</div>
+                <div className="text-2xl font-bold text-emerald-400 font-mono">4.5+</div>
                 <div className="text-xs text-muted-foreground">Years Exp</div>
               </div>
             </motion.div>
@@ -218,32 +197,10 @@ export function ModernHero() {
               whileHover={{ scale: 1.05 }}
             >
               <div className="text-center">
-                <div className="text-2xl font-bold text-blue-400">50+</div>
-                <div className="text-xs text-muted-foreground">Projects</div>
+                <div className="text-2xl font-bold text-blue-400 font-mono">20K+</div>
+                <div className="text-xs text-muted-foreground">Users Served</div>
               </div>
             </motion.div>
-
-            {/* Orbiting Elements */}
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-3 h-3 bg-emerald-400/60 rounded-full"
-                style={{
-                  top: "50%",
-                  left: "50%",
-                }}
-                animate={{
-                  x: [0, Math.cos((i * 120 * Math.PI) / 180) * 150],
-                  y: [0, Math.sin((i * 120 * Math.PI) / 180) * 150],
-                  rotate: 360,
-                }}
-                transition={{
-                  duration: 10 + i * 2,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "linear",
-                }}
-              />
-            ))}
           </div>
         </motion.div>
       </div>
@@ -256,7 +213,7 @@ export function ModernHero() {
         transition={{ delay: 1.6 }}
       >
         <motion.button
-          onClick={() => scrollToSection("about")}
+          onClick={() => scrollToSection("experience")}
           className="flex flex-col items-center gap-2 text-muted-foreground hover:text-emerald-400 transition-colors group"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
@@ -266,5 +223,5 @@ export function ModernHero() {
         </motion.button>
       </motion.div>
     </div>
-  );
+  )
 }

@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Outfit, JetBrains_Mono } from "next/font/google"
+import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
 const inter = Inter({
@@ -22,11 +23,11 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Ramaiah M - Full Stack Developer | Modern Web Solutions",
+  title: "Ramaiah M - Senior Frontend Engineer | React, Next.js, TypeScript",
   description:
-    "Experienced Full Stack Developer specializing in React, Next.js, and modern web technologies. Creating exceptional digital experiences with 4+ years of expertise.",
+    "Senior Frontend Engineer with 4.5+ years building scalable SaaS platforms, automation dashboards, and high-performance web apps. React, Next.js, TypeScript specialist.",
   keywords:
-    "Full Stack Developer, React Developer, Next.js, TypeScript, Web Development, Frontend Developer, Backend Developer, JavaScript, Node.js",
+    "Senior Frontend Engineer, React Developer, Next.js, TypeScript, SaaS, Frontend Architecture, Web Development, JavaScript, Node.js",
   authors: [{ name: "Ramaiah M" }],
   creator: "Ramaiah M",
   publisher: "Ramaiah M",
@@ -40,9 +41,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Ramaiah M - Full Stack Developer | Modern Web Solutions",
+    title: "Ramaiah M - Senior Frontend Engineer | React, Next.js, TypeScript",
     description:
-      "Experienced Full Stack Developer specializing in React, Next.js, and modern web technologies. Creating exceptional digital experiences with 4+ years of expertise.",
+      "Senior Frontend Engineer with 4.5+ years building scalable SaaS platforms and automation dashboards. 25% performance improvement, 40% engagement increase, 20K+ users served.",
     url: "https://ramaiah-portfolio.net",
     siteName: "Ramaiah M Portfolio",
     images: [
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
         url: "/images/ramaiah-profile.jpg",
         width: 1200,
         height: 630,
-        alt: "Ramaiah M - Full Stack Developer",
+        alt: "Ramaiah M - Senior Frontend Engineer",
       },
     ],
     locale: "en_US",
@@ -58,9 +59,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ramaiah M - Full Stack Developer | Modern Web Solutions",
+    title: "Ramaiah M - Senior Frontend Engineer | React, Next.js, TypeScript",
     description:
-      "Experienced Full Stack Developer specializing in React, Next.js, and modern web technologies. Creating exceptional digital experiences with 4+ years of expertise.",
+      "Senior Frontend Engineer with 4.5+ years building scalable SaaS platforms. React, Next.js, TypeScript specialist.",
     images: ["/images/ramaiah-profile.jpg"],
   },
   robots: {
@@ -74,10 +75,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -86,15 +83,18 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${outfit.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#10b981" />
       </head>
-      <body className="font-inter antialiased">{children}</body>
+      <body className="font-inter antialiased">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

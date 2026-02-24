@@ -1,7 +1,9 @@
-import React, { lazy } from "react";
+import React, { lazy, Suspense } from "react";
 
 import { motion, useMotionValue } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
+
+const Spline = lazy(() => import("@splinetool/react-spline"));
 import {
   Code2,
   Database,
@@ -12,8 +14,6 @@ import {
   GitBranch,
   TestTube,
 } from "lucide-react";
-// import Spline from "@splinetool/react-spline/next";
-const Spline = lazy(() => import("@splinetool/react-spline"));
 
 const technologies = [
   {
@@ -679,20 +679,36 @@ export function TechHologramShowcase() {
   );
 }
 
-// 3D Cube Showcase using Spline
+// 3D Cube Showcase using Spline (lazy-loaded)
 export function Tech3DCubeShowcase() {
   return (
-    <main className="w-full h-full">
-      <Spline scene="https://prod.spline.design/dzBbeI1atpspxW9A/scene.splinecode" />
-    </main>
+    <Suspense
+      fallback={
+        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl">
+          <div className="w-8 h-8 border-2 border-emerald-400/30 border-t-emerald-400 rounded-full animate-spin" />
+        </div>
+      }
+    >
+      <main className="w-full h-full">
+        <Spline scene="https://prod.spline.design/dzBbeI1atpspxW9A/scene.splinecode" />
+      </main>
+    </Suspense>
   );
 }
 
 export function Tech3DKeyboard() {
   return (
-    <main className="w-full h-full">
-      <Spline scene="https://prod.spline.design/ou-uMSY4unzfgmpL/scene.splinecode" />
-    </main>
+    <Suspense
+      fallback={
+        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl">
+          <div className="w-8 h-8 border-2 border-emerald-400/30 border-t-emerald-400 rounded-full animate-spin" />
+        </div>
+      }
+    >
+      <main className="w-full h-full">
+        <Spline scene="https://prod.spline.design/ou-uMSY4unzfgmpL/scene.splinecode" />
+      </main>
+    </Suspense>
   );
 }
 
