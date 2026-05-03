@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
 import { Menu, X, Sun, Moon } from "lucide-react"
@@ -10,12 +10,16 @@ export function ModernNavigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("")
   const [mounted, setMounted] = useState(false)
-  const { scrollY } = useScroll()
-  const backgroundColor = useTransform(scrollY, [0, 100], ["rgba(15, 23, 42, 0)", "rgba(15, 23, 42, 0.8)"])
+  const [isScrolled, setIsScrolled] = useState(false)
   const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   // Active section tracking
@@ -50,8 +54,9 @@ export function ModernNavigation() {
 
   return (
     <motion.nav
-      className="fixed top-0 w-full z-50 px-6 py-4"
-      style={{ backgroundColor }}
+      className={`fixed top-0 w-full z-50 px-6 py-4 transition-all duration-300 ${
+        isScrolled ? "bg-background/80 backdrop-blur-md border-b border-border/50" : "bg-transparent"
+      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -74,7 +79,7 @@ export function ModernNavigation() {
                   key={item.name}
                   href={item.href}
                   className={`px-4 py-2 rounded-lg transition-colors relative group ${
-                    isActive ? "text-emerald-400" : "text-muted-foreground hover:text-white"
+                    isActive ? "text-emerald-600 dark:text-emerald-400" : "text-muted-foreground hover:text-foreground"
                   }`}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -151,8 +156,8 @@ export function ModernNavigation() {
                   href={item.href}
                   className={`block px-4 py-3 rounded-lg transition-all ${
                     isActive
-                      ? "text-emerald-400 bg-emerald-400/10"
-                      : "text-muted-foreground hover:text-white hover:bg-white/5"
+                      ? "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 dark:bg-emerald-400/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5"
                   }`}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : -20 }}

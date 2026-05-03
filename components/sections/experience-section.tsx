@@ -13,14 +13,14 @@ const roleIcons = [Code2, Layers]
 const colorClasses: Record<string, { icon: string; badge: string; text: string; border: string }> = {
   emerald: {
     icon: "bg-emerald-500/10 border-emerald-500/20",
-    badge: "bg-emerald-400/20 text-emerald-300 border-emerald-400/30",
-    text: "text-emerald-400",
+    badge: "bg-emerald-400/20 text-emerald-700 dark:text-emerald-300 border-emerald-400/30",
+    text: "text-emerald-600 dark:text-emerald-400",
     border: "border-emerald-500/30",
   },
   blue: {
     icon: "bg-blue-500/10 border-blue-500/20",
-    badge: "bg-blue-400/20 text-blue-300 border-blue-400/30",
-    text: "text-blue-400",
+    badge: "bg-blue-400/20 text-blue-700 dark:text-blue-300 border-blue-400/30",
+    text: "text-blue-600 dark:text-blue-400",
     border: "border-blue-500/30",
   },
 }
@@ -35,7 +35,7 @@ export function ExperienceSection() {
             whileHover={{ scale: 1.05 }}
           >
             <Target className="w-4 h-4 text-orange-400" />
-            <span className="text-orange-400">Professional Journey</span>
+            <span className="text-orange-600 dark:text-orange-400">Professional Journey</span>
           </motion.div>
 
           <ScrollRevealText
@@ -51,17 +51,16 @@ export function ExperienceSection() {
           />
         </div>
 
-        {/* Timeline */}
+        {/* Experience Cards */}
         <div className="relative space-y-12">
-          {/* Vertical connector line */}
-          <div className="absolute left-[39px] top-8 bottom-8 w-px bg-gradient-to-b from-emerald-500/50 via-blue-500/50 to-transparent hidden lg:block" />
 
           {experience.map((role, roleIndex) => {
             const Icon = roleIcons[roleIndex] || Code2
             const colors = colorClasses[role.color] || colorClasses.emerald
 
             return (
-              <ModernCard key={role.company} delay={roleIndex * 0.2} glowColor={role.color}>
+              <div key={role.company} className="relative">
+                <ModernCard delay={roleIndex * 0.2} glowColor={role.color}>
                 <div className="p-8">
                   <div className="flex flex-col lg:flex-row lg:items-start gap-8">
                     <motion.div
@@ -78,7 +77,7 @@ export function ExperienceSection() {
                       <div className="space-y-2">
                         <AnimatedText
                           text={role.title}
-                          className="text-2xl font-bold text-white font-outfit"
+                          className="text-2xl font-bold text-foreground font-outfit"
                           stagger={0.03}
                         />
                         <p className={`text-xl font-semibold ${colors.text}`}>
@@ -128,6 +127,11 @@ export function ExperienceSection() {
                   </div>
                 </div>
               </ModernCard>
+                {/* Connecting line to next card (rendered only in the gap) */}
+                {roleIndex !== experience.length - 1 && (
+                  <div className="absolute left-[71px] -bottom-12 h-12 w-px bg-gradient-to-b from-emerald-500/50 to-blue-500/50 hidden lg:block z-0" />
+                )}
+              </div>
             )
           })}
         </div>

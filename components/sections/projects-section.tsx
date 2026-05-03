@@ -21,10 +21,10 @@ export function ProjectsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-outfit">
-            Featured <span className="text-emerald-400">Projects</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 font-outfit">
+            Featured <span className="text-emerald-600 dark:text-emerald-400">Projects</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Real projects with source code and live deployments — from enterprise SaaS to AI-powered tools.
           </p>
         </motion.div>
@@ -59,10 +59,10 @@ export function ProjectsSection() {
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-1 font-outfit">
+                  <h3 className="text-xl font-bold text-foreground mb-1 font-outfit">
                     {project.title}
                   </h3>
-                  <p className="text-gray-300 mb-4 text-sm">{project.tagline}</p>
+                  <p className="text-muted-foreground mb-4 text-sm">{project.tagline}</p>
 
                   {project.problem && !project.comingSoon && (
                     <p className="text-muted-foreground text-sm mb-4">

@@ -48,7 +48,7 @@ export function ModernCard({
       className={className}
     >
       <Card
-        className={`h-full glass border border-white/10 backdrop-blur-xl hover:border-white/20 transition-all duration-300 hover:shadow-2xl ${glowClasses[glowColor]}`}
+        className={`h-full glass border border-border dark:border-white/10 backdrop-blur-xl hover:border-border/80 dark:hover:border-white/20 transition-all duration-300 hover:shadow-2xl ${glowClasses[glowColor]}`}
       >
         {children}
       </Card>

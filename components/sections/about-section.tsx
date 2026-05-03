@@ -21,18 +21,18 @@ export function AboutSection() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-blue-500/20 text-sm font-medium mb-6"
             whileHover={{ scale: 1.05 }}
           >
-            <Brain className="w-4 h-4 text-blue-400" />
-            <span className="text-blue-400">About Me</span>
+            <Brain className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+            <span className="text-blue-600 dark:text-blue-400">About Me</span>
           </motion.div>
 
           <ScrollRevealText
             text="Building at Scale"
-            className="text-4xl md:text-5xl font-bold text-white mb-6 font-outfit"
+            className="text-4xl md:text-5xl font-bold text-foreground mb-6 font-outfit"
           />
 
           <AnimatedText
-            text="Senior Frontend Engineer with 4.5+ years building scalable SaaS platforms, automation dashboards, and high-performance web apps."
-            className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            text="Senior Frontend Engineer with 4.7+ years building high-performance, scalable web applications using React.js, Next.js, and TypeScript. Deep expertise in SSR/SSG/ISR, reusable design systems, and Core Web Vitals optimization."
+            className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
             delay={0.3}
             stagger={0.02}
           />
@@ -93,8 +93,8 @@ export function AboutSection() {
                 whileHover={{ scale: 1.1 }}
               >
                 <div className="text-center">
-                  <div className="text-xl font-bold text-emerald-400 font-mono">
-                    <AnimatedCounter value={4} suffix=".5+" />
+                  <div className="text-xl font-bold text-emerald-600 dark:text-emerald-400 font-mono">
+                    <AnimatedCounter value={4} suffix=".7+" />
                   </div>
                   <div className="text-xs text-muted-foreground font-mono">YEARS</div>
                 </div>
@@ -109,7 +109,7 @@ export function AboutSection() {
                 whileHover={{ scale: 1.1 }}
               >
                 <div className="text-center">
-                  <div className="text-xl font-bold text-blue-400 font-mono">
+                  <div className="text-xl font-bold text-blue-600 dark:text-blue-400 font-mono">
                     <AnimatedCounter value={20} suffix="K+" />
                   </div>
                   <div className="text-xs text-muted-foreground font-mono">USERS</div>
@@ -129,13 +129,13 @@ export function AboutSection() {
             <div className="space-y-6">
               <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                 <AnimatedText
-                  text="I specialize in scalable frontend architecture, performance optimization, and real-time dashboards for complex workflows and automation-heavy products. I use AI-assisted development daily to ship features faster and design smarter user experiences."
+                  text="I specialize in leading frontend architecture decisions and shipping production-ready features independently across distributed teams."
                   delay={0.2}
                   stagger={0.02}
                 />
 
                 <AnimatedText
-                  text="Recent impact: improved app performance by 25%, increased user engagement by 40%, and shipped production apps used by 20K+ users. I'm comfortable working across the stack when needed — Node.js APIs, PostgreSQL, auth, cloud deployments — to unblock product delivery."
+                  text="Recent impact: Delivered a 25% reduction in production load times, 40% increase in user engagement, and Lighthouse scores of 90+ across enterprise and consumer applications serving 20,000+ users."
                   delay={0.4}
                   stagger={0.02}
                 />
@@ -149,14 +149,34 @@ export function AboutSection() {
                 transition={{ delay: 0.6 }}
               >
                 <div className="flex items-center gap-3">
-                  <Award className="w-5 h-5 text-emerald-400" />
-                  <span className="font-semibold text-white font-outfit">Education</span>
+                  <Award className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                  <span className="font-semibold text-foreground font-outfit">Education</span>
                 </div>
                 <p className="text-muted-foreground ml-8">
-                  B.E. in Computer Science & Engineering
+                  Bachelor of Engineering — Computer Science & Engineering
                   <br />
-                  <span className="text-emerald-400">
-                    University College of Engineering Villupuram, 2017 – 2021
+                  <span className="text-emerald-600 dark:text-emerald-400">
+                    Anna University, Tamil Nadu (2017 – 2021) • CGPA: 7.3 / 10
+                  </span>
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="space-y-3"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.8 }}
+              >
+                <div className="flex items-center gap-3">
+                  <Brain className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                  <span className="font-semibold text-foreground font-outfit">Open Source & Community</span>
+                </div>
+                <p className="text-muted-foreground ml-8 leading-relaxed">
+                  <span className="font-medium text-foreground">Winner:</span> Foss Hack 3.0
+                  <br />
+                  <span className="text-sm">
+                    Hacktoberfest contributor • Wikimedia Digitization • Mozilla Localization & Common Voice • OpenStreetMap
                   </span>
                 </p>
               </motion.div>

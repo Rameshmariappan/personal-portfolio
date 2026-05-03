@@ -86,10 +86,10 @@ export function ContactSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-outfit">
-            Get In <span className="text-emerald-400">Touch</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 font-outfit">
+            Get In <span className="text-emerald-600 dark:text-emerald-400">Touch</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Ready to bring your ideas to life? Let&apos;s discuss your next project.
           </p>
         </motion.div>
@@ -97,7 +97,7 @@ export function ContactSection() {
         <div className="grid md:grid-cols-2 gap-12">
           <ModernCard delay={0.2} glowColor="emerald">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-white mb-6 font-outfit">Contact Information</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-6 font-outfit">Contact Information</h3>
 
               <div className="space-y-6">
                 <a href="mailto:rameshmariappan.m@gmail.com" className="flex items-center gap-4 group">
@@ -105,8 +105,8 @@ export function ContactSection() {
                     <Mail className="w-6 h-6 text-emerald-400" />
                   </div>
                   <div>
-                    <p className="text-gray-400 text-sm">Email</p>
-                    <p className="text-white font-medium group-hover:text-emerald-400 transition-colors">
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">Email</p>
+                    <p className="text-foreground font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                       rameshmariappan.m@gmail.com
                     </p>
                   </div>
@@ -117,8 +117,8 @@ export function ContactSection() {
                     <Phone className="w-6 h-6 text-emerald-400" />
                   </div>
                   <div>
-                    <p className="text-gray-400 text-sm">Phone</p>
-                    <p className="text-white font-medium group-hover:text-emerald-400 transition-colors">
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">Phone</p>
+                    <p className="text-foreground font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                       +91 7358848699
                     </p>
                   </div>
@@ -129,14 +129,14 @@ export function ContactSection() {
                     <MapPin className="w-6 h-6 text-emerald-400" />
                   </div>
                   <div>
-                    <p className="text-gray-400 text-sm">Location</p>
-                    <p className="text-white font-medium">Chennai, Tamil Nadu</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">Location</p>
+                    <p className="text-foreground font-medium">Chennai, Tamil Nadu</p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-8 pt-8 border-t border-white/10">
-                <p className="text-gray-400 mb-4">Follow me on social media</p>
+                <p className="text-muted-foreground mb-4">Follow me on social media</p>
                 <div className="flex gap-4">
                   <motion.a
                     href="https://github.com/Rameshmariappan"
@@ -144,8 +144,9 @@ export function ContactSection() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
+                    title="GitHub"
                   >
-                    <Button size="sm" variant="outline" className="glass border-white/20 bg-transparent hover:border-emerald-400/50 hover:text-emerald-400">
+                    <Button size="sm" variant="outline" className="glass border-border dark:border-white/20 bg-transparent hover:border-emerald-500/50 hover:text-emerald-600 dark:hover:text-emerald-400 text-foreground">
                       <Github className="w-4 h-4" />
                     </Button>
                   </motion.a>
@@ -155,8 +156,9 @@ export function ContactSection() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
+                    title="LinkedIn"
                   >
-                    <Button size="sm" variant="outline" className="glass border-white/20 bg-transparent hover:border-emerald-400/50 hover:text-emerald-400">
+                    <Button size="sm" variant="outline" className="glass border-border dark:border-white/20 bg-transparent hover:border-emerald-500/50 hover:text-emerald-600 dark:hover:text-emerald-400 text-foreground">
                       <Linkedin className="w-4 h-4" />
                     </Button>
                   </motion.a>
@@ -167,20 +169,20 @@ export function ContactSection() {
 
           <ModernCard delay={0.4} glowColor="blue">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-white mb-6 font-outfit">Send a Message</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-6 font-outfit">Send a Message</h3>
 
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">Name</label>
                   <input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-1 transition-colors ${
+                    className={`w-full px-4 py-3 bg-black/5 dark:bg-white/5 border rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-1 transition-colors ${
                       formErrors.name
                         ? "border-red-500/50 focus:border-red-400/50 focus:ring-red-400/50"
-                        : "border-white/10 focus:border-emerald-400/50 focus:ring-emerald-400/50"
+                        : "border-border dark:border-white/10 focus:border-emerald-500/50 dark:focus:border-emerald-400/50 focus:ring-emerald-500/50 dark:focus:ring-emerald-400/50"
                     }`}
                     placeholder="Your name"
                     disabled={isSubmitting}
@@ -193,16 +195,16 @@ export function ContactSection() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">Email</label>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-1 transition-colors ${
+                    className={`w-full px-4 py-3 bg-black/5 dark:bg-white/5 border rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-1 transition-colors ${
                       formErrors.email
                         ? "border-red-500/50 focus:border-red-400/50 focus:ring-red-400/50"
-                        : "border-white/10 focus:border-emerald-400/50 focus:ring-emerald-400/50"
+                        : "border-border dark:border-white/10 focus:border-emerald-500/50 dark:focus:border-emerald-400/50 focus:ring-emerald-500/50 dark:focus:ring-emerald-400/50"
                     }`}
                     placeholder="your.email@example.com"
                     disabled={isSubmitting}
@@ -215,16 +217,16 @@ export function ContactSection() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">Message</label>
                   <textarea
                     rows={4}
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-1 resize-none transition-colors ${
+                    className={`w-full px-4 py-3 bg-black/5 dark:bg-white/5 border rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-1 resize-none transition-colors ${
                       formErrors.message
                         ? "border-red-500/50 focus:border-red-400/50 focus:ring-red-400/50"
-                        : "border-white/10 focus:border-emerald-400/50 focus:ring-emerald-400/50"
+                        : "border-border dark:border-white/10 focus:border-emerald-500/50 dark:focus:border-emerald-400/50 focus:ring-emerald-500/50 dark:focus:ring-emerald-400/50"
                     }`}
                     placeholder="Tell me about your project..."
                     disabled={isSubmitting}
@@ -242,8 +244,8 @@ export function ContactSection() {
                     animate={{ opacity: 1, y: 0 }}
                     className={`p-4 rounded-lg ${
                       submitStatus.type === "success"
-                        ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-400"
-                        : "bg-red-500/10 border border-red-500/20 text-red-400"
+                        ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400"
+                        : "bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400"
                     }`}
                   >
                     {submitStatus.message}

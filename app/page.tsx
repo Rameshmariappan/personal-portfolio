@@ -13,7 +13,7 @@ import { ScrollProgress } from "@/components/scroll-progress"
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       <ScrollProgress />
       <ModernNavigation />
 

@@ -34,7 +34,7 @@ export function ModernHero() {
         <motion.div
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+            backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--foreground) / 0.15) 1px, transparent 0)`,
             backgroundSize: "50px 50px",
           }}
           animate={{ backgroundPosition: ["0px 0px", "50px 50px"] }}
@@ -58,26 +58,26 @@ export function ModernHero() {
             transition={{ delay: 0.2 }}
             whileHover={{ scale: 1.05 }}
           >
-            <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-            <span className="text-emerald-400">Senior Frontend Engineer @ Konnectify</span>
+            <div className="w-2 h-2 bg-emerald-500 dark:bg-emerald-400 rounded-full animate-pulse" />
+            <span className="text-emerald-600 dark:text-emerald-400">Senior Frontend Engineer @ Konnectify</span>
           </motion.div>
 
           {/* Main Heading */}
           <div className="space-y-4">
             <ScrollRevealText
               text="Ramaiah M"
-              className="text-6xl lg:text-7xl font-bold bg-gradient-to-r from-white via-emerald-200 to-emerald-400 bg-clip-text text-transparent font-outfit"
+              className="text-6xl lg:text-7xl font-bold bg-gradient-to-r from-slate-900 via-emerald-600 to-emerald-500 dark:from-white dark:via-emerald-200 dark:to-emerald-400 bg-clip-text text-transparent font-outfit"
             />
 
-            <div className="text-3xl lg:text-4xl font-semibold text-emerald-400 font-outfit h-[48px]">
+            <div className="text-3xl lg:text-4xl font-semibold text-emerald-600 dark:text-emerald-400 font-outfit h-[48px]">
               <TypewriterText
                 texts={[
                   "Senior Frontend Engineer",
-                  "React & Next.js Specialist",
-                  "SaaS Platform Architect",
-                  "AI-Augmented Developer",
+                  "React.js & Next.js Specialist",
+                  "TypeScript Developer",
+                  "Performance Optimizer",
                 ]}
-                className="text-3xl lg:text-4xl font-semibold text-emerald-400 font-outfit"
+                className="text-3xl lg:text-4xl font-semibold text-emerald-600 dark:text-emerald-400 font-outfit"
               />
             </div>
           </div>
@@ -89,10 +89,10 @@ export function ModernHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            I build scalable SaaS platforms and automation dashboards with React, Next.js, and TypeScript.
-            Recent impact: <span className="text-emerald-400 font-semibold">25% performance improvement</span>,{" "}
-            <span className="text-emerald-400 font-semibold">40% user engagement increase</span>, and production apps serving{" "}
-            <span className="text-emerald-400 font-semibold">20K+ users</span>.
+            Senior Frontend Engineer with <span className="text-emerald-600 dark:text-emerald-400 font-semibold">4.7+ years</span> building scalable web applications.
+            Delivered <span className="text-emerald-600 dark:text-emerald-400 font-semibold">25% performance improvement</span>,{" "}
+            <span className="text-emerald-600 dark:text-emerald-400 font-semibold">40% user engagement increase</span>, and production apps serving{" "}
+            <span className="text-emerald-600 dark:text-emerald-400 font-semibold">20K+ users</span>.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -114,7 +114,7 @@ export function ModernHero() {
             <Button
               size="lg"
               variant="outline"
-              className="glass border-white/20 hover:border-emerald-400/50 px-8 py-6 text-lg font-semibold rounded-xl group bg-transparent"
+              className="glass border-border dark:border-white/20 hover:border-emerald-500/50 dark:hover:border-emerald-400/50 px-8 py-6 text-lg font-semibold rounded-xl group bg-transparent text-foreground"
               onClick={handleDownloadCV}
             >
               <Download className="w-5 h-5 mr-2 group-hover:translate-y-1 transition-transform" />
@@ -140,9 +140,10 @@ export function ModernHero() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl glass border border-white/10 hover:border-emerald-400/50 text-muted-foreground hover:text-emerald-400 transition-all"
+                  className="p-3 rounded-xl glass border border-border dark:border-white/10 hover:border-emerald-500/50 dark:hover:border-emerald-400/50 text-muted-foreground hover:text-emerald-600 dark:hover:text-emerald-400 transition-all"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
+                  title={label}
                 >
                   <Icon className="w-5 h-5" />
                 </motion.a>
@@ -184,7 +185,7 @@ export function ModernHero() {
               whileHover={{ scale: 1.05 }}
             >
               <div className="text-center">
-                <div className="text-2xl font-bold text-emerald-400 font-mono">4.5+</div>
+                <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 font-mono">4.7+</div>
                 <div className="text-xs text-muted-foreground">Years Exp</div>
               </div>
             </motion.div>
@@ -197,7 +198,7 @@ export function ModernHero() {
               whileHover={{ scale: 1.05 }}
             >
               <div className="text-center">
-                <div className="text-2xl font-bold text-blue-400 font-mono">20K+</div>
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 font-mono">20K+</div>
                 <div className="text-xs text-muted-foreground">Users Served</div>
               </div>
             </motion.div>

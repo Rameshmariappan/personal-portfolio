@@ -14,70 +14,79 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "Asset Management System",
-    tagline: "Enterprise-grade asset tracking with full lifecycle management",
+    title: "AI Content Generator",
+    tagline: "AI-powered content platform with BYOK model and multi-platform publishing",
     problem:
-      "Organizations struggle to track physical assets like laptops, monitors, and devices across teams — leading to lost equipment, compliance gaps, and manual auditing overhead.",
+      "Content creators waste hours manually adapting and publishing content across multiple platforms with no consistent brand voice.",
     solution:
-      "Built a full-stack asset management platform with JWT + MFA authentication, role-based access control, QR/barcode generation, dual-approval transfer workflows, and immutable audit logging.",
+      "Built a BYOK (Bring Your Own Key) AI content platform with multi-platform publishing, integrating OpenAI and Anthropic APIs for AI-assisted content workflows. Implemented SSR for dynamic generation pages achieving sub-2s LCP.",
     impact:
-      "Complete asset lifecycle management with multi-format reporting (CSV, XLSX, PDF) and real-time dashboard analytics.",
+      "Enabled rapid feature iteration using a library of 20+ reusable shadcn/ui components with Storybook documentation.",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "OpenAI API",
+      "Anthropic API",
+      "shadcn/ui",
+      "Tailwind CSS"
+    ],
+    live: "https://ai-content-generator-three-iota.vercel.app/",
+    color: "blue",
+  },
+  {
+    title: "Enterprise Asset Management System",
+    tagline: "Full-stack architecture for asset lifecycle management",
+    problem:
+      "Organizations struggle to track physical assets like laptops, monitors, and devices across teams, leading to auditing overhead.",
+    solution:
+      "Designed full-stack architecture for asset lifecycle management using Next.js 14 App Router and NestJS, with authentication, RBAC, and asset tracking workflows. Containerized all services using Docker Compose.",
+    impact:
+      "Integrated Redis caching layer reducing repeated DB query load by 60%. Built virtualized dashboards handling 10K+ asset records with smooth 60fps rendering performance.",
     tech: [
       "Next.js 14",
       "NestJS",
-      "TypeScript",
       "PostgreSQL",
       "Prisma",
       "Redis",
       "Docker",
-      "Tailwind",
     ],
-    github: "https://github.com/Rameshmariappan/asset-management",
     live: "https://asset-management-frontend-theta.vercel.app/auth/login",
-    image: "/images/projects/asset-management.png",
     color: "emerald",
   },
   {
-    title: "AI Content Generator",
-    tagline: "AI-powered content platform with BYOK model and multi-platform publishing",
+    title: "SEO-Optimized Recycling Platform",
+    tagline: "Performance-optimized business platform for scrap recycling industry",
     problem:
-      "Content creators waste hours manually adapting and publishing content across WordPress, LinkedIn, and Medium — with no consistent brand voice.",
+      "Traditional scrap businesses lack digital presence and rely on manual local lead generation.",
     solution:
-      "Built a serverless content platform that trains on your brand voice, generates content using your own OpenAI or Anthropic API keys (zero markup), and publishes across platforms in one click.",
+      "Delivered SSR-based website with Schema.org structured data, semantic HTML, and sitemap configuration. Executed extensive image optimization, deferred scripts, and font preloading.",
     impact:
-      "Serverless architecture on Vercel + Supabase for near-zero infrastructure costs with scalable multi-platform distribution.",
+      "Achieved Lighthouse SEO score of 98 and improved overall Lighthouse performance score from 62 to 91.",
     tech: [
       "Next.js",
-      "TypeScript",
-      "Tailwind",
-      "Supabase",
-      "OpenAI API",
-      "Anthropic API",
-      "shadcn/ui",
-    ],
-    live: "https://ai-content-generator-three-iota.vercel.app/",
-    image: "/images/projects/ai-content-generator.png",
-    color: "blue",
-  },
-  {
-    title: "ASM Groups",
-    tagline: "SEO-optimized business platform for Chennai's scrap recycling industry",
-    problem:
-      "A 40+ year scrap dealing business serving Chennai's OMR corridor had no digital presence — relying entirely on word-of-mouth for customer acquisition.",
-    solution:
-      "Built a performance-optimized business site with structured data markup (Schema.org), Google Analytics integration, and a streamlined service booking flow.",
-    impact:
-      "4.8/5 customer rating, 100+ verified reviews, and service coverage across 20+ neighborhoods with same-day pickup scheduling.",
-    tech: [
-      "Next.js",
-      "React",
-      "TypeScript",
       "Schema.org",
       "Google Analytics",
-      "SEO",
+      "Tailwind CSS"
     ],
     live: "https://asm-topaz.vercel.app/",
-    image: "/images/projects/asm-groups.png",
     color: "purple",
   },
+  {
+    title: "Orthopedic Surgeon Portfolio",
+    tagline: "Responsive, motion-heavy professional portfolio",
+    problem:
+      "Medical professionals require highly performant, accessible, and compliant web presence.",
+    solution:
+      "Built responsive portfolio with scroll-triggered animations and page transitions using Framer Motion. Executed full PII sanitization and data privacy audit before launch.",
+    impact:
+      "Achieved LCP under 1.8s via SSR and next/image optimization, ensuring compliance with data protection requirements.",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Framer Motion",
+      "Tailwind CSS"
+    ],
+    live: "https://ortho-doctor-portfolio.vercel.app/",
+    color: "blue",
+  }
 ]
